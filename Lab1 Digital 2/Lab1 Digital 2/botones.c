@@ -73,3 +73,10 @@ uint8_t boton_j1_presionado(void) {
 	return 0;
 }
 
+uint8_t boton_j2_presionado(void) {
+	if (btn_j2.presionado_flag) {
+		btn_j2.presionado_flag = 0;
+		return 1;
+	}
+	return 0;
+}
