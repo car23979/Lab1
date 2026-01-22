@@ -233,3 +233,40 @@ void manejarCarrera(void) {
 		estadoActual = CARRERA_TERMINADA;
 	}
 }
+
+void manejarFinCarrera(void) {
+	static uint8_t mostrarGanador = 1;
+	static uint32_t ultimoParpadeo = 0;
+	
+	// Mostrar número del ganador en display
+	if (ganador == 1) {
+		display_mostrar_numero(1);
+		
+		// Encender todos los LEDs del jugador 1
+		actualizarLEDsJugador1(0x0F);	// Todos los bits en 1
+		
+		// Apagar LEDs del jugador 2
+		actualizarLEDsJugador2(0x00);	
+	} else if (ganador == 2) {
+		display_mostrar_numero(2);
+		
+		// Encender todos los LEDs del jugador 2
+		actualizarLEDsJugador2(0x0F);	// Todos los bits en 1
+		
+		// Apagar LEDs del Jugador 1
+		actualizarLEDsJugador1(0x00);
+	}else if (ganador == 3) {
+		
+		// Empate se va a mostrar 0 y parpater ambos jugadores
+		uint32_t tiempoActual = obtenerMillis();
+		
+		if (tiempoActual - ultimoParpadeo > 500) {	//Parpadeo cada 500ms
+			ultimoParpadeo = tiempoActual;
+			mostrarGanador = !mostrarGanador;
+		}
+		
+		if (mostrarGanador) {
+			display_mostrar_numero(0)
+		}
+	}
+}
