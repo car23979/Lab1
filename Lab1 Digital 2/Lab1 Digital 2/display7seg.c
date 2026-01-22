@@ -21,3 +21,11 @@ static const uint8_t digitos[10][7] = {
 	{1,1,1,1,0,1,1},	// 9
 };
 
+void display_init(void) {
+	// Configurar pines de segmentos como salidas
+	DDRD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C) |
+			(1 << SEG_D) | (1 << SEG_E) | (1 << SEG_F);
+	DDRB |= (1 << SEG_G);
+	
+	// 
+}
