@@ -5,7 +5,12 @@
  * Author : David Carranza
  */ 
 
+#define  F_CPU 16000000UL
 #include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
+#include "display7seg.h"
+#include "botones.h"
 
 
 int main(void)
