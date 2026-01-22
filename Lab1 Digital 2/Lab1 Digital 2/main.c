@@ -212,4 +212,18 @@ void manejarCarrera(void) {
 			}
 		}
 	}
+	
+	// Botón J2
+	if (boton_j2_presionado()) {
+		if (contadorJugador2) {
+			contadorJugador2++;
+			actualizarLEDsJugador2(contadorJugador2);
+			
+			// Verificar si ganó
+			if (contadorJugador2 == META) {
+				ganador = 2;
+				estadoActual = CARRERA_TERMINADA;
+			}
+		}
+	}
 }
