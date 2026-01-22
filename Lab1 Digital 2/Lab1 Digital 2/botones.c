@@ -16,3 +16,9 @@ typedef struct {
 	uint8_t presionado_flag;	// Bandera de botón presionado
 	uint8_t ultimo_cambio;		// Tiempo del último cambio
 	} Boton;
+
+// Varaibles para cada botón
+static Boton btn_inicio = {BTN_INICIO, 1, 1, 0, 0};
+static Boton btn_j1 = {BTN_J1, 1, 1, 0, 0};
+static Boton btn_j2 = {BTN_J2, 1, 1, 0, 0};
+
