@@ -156,5 +156,14 @@ void manejarEsperaInicio(void) {
 		estadoActual = CONTEO_REGRESIVO;
 		contadorRegresivo = 5;
 		tiempoInicioConteo = 0;
+		inicioConteoFlag = 1;	// Indicar que el conteo acaba de empezar
+		
+		// Configurar Timer1 para 1 segundo
+		TCNT1 = 0;					// Reiniciar contador
+		TIMSK1 |= (1 << OCIE1A);	// Habilitar interrupción
+		
+		// Mostrar primer número 5
+		display_mostrar_numero(5);
 	}
 }
+
