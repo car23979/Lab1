@@ -301,7 +301,7 @@ void display_apagar(void) {
 	// Para apagar: poner todos los segmentos en HIGH
 	PORTD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C) |
  19a:	8b b1       	in	r24, 0x0b	; 11
- 19c:	8c 67       	ori	r24, 0x7C	; 124
+ 19c:	8c 6f       	ori	r24, 0xFC	; 252
  19e:	8b b9       	out	0x0b, r24	; 11
 	(1 << SEG_D) | (1 << SEG_E) | (1 << SEG_F);
 	PORTB |= (1 << SEG_G);
@@ -318,7 +318,7 @@ void display_init(void) {
 	// Configurar pines como salidas
 	DDRD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C) |
  1a8:	8a b1       	in	r24, 0x0a	; 10
- 1aa:	8c 67       	ori	r24, 0x7C	; 124
+ 1aa:	8c 6f       	ori	r24, 0xFC	; 252
  1ac:	8a b9       	out	0x0a, r24	; 10
 	(1 << SEG_D) | (1 << SEG_E) | (1 << SEG_F);
 	DDRB |= (1 << SEG_G);
@@ -488,11 +488,11 @@ void display_mostrar_numero(uint8_t numero) {
  2ba:	21 11       	cpse	r18, r1
  2bc:	04 c0       	rjmp	.+8      	; 0x2c6 <display_mostrar_numero+0x10c>
  2be:	2b b1       	in	r18, 0x0b	; 11
- 2c0:	2f 7d       	andi	r18, 0xDF	; 223
+ 2c0:	2f 77       	andi	r18, 0x7F	; 127
  2c2:	2b b9       	out	0x0b, r18	; 11
  2c4:	03 c0       	rjmp	.+6      	; 0x2cc <display_mostrar_numero+0x112>
  2c6:	2b b1       	in	r18, 0x0b	; 11
- 2c8:	20 62       	ori	r18, 0x20	; 32
+ 2c8:	20 68       	ori	r18, 0x80	; 128
  2ca:	2b b9       	out	0x0b, r18	; 11
 	// Segmento G
 	if (digitos[numero][6] == 0) PORTB &= ~(1 << SEG_G); else PORTB |= (1 << SEG_G);

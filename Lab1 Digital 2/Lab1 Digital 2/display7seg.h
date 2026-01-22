@@ -17,7 +17,7 @@
 #define  SEG_C		PIND2	// D2
 #define  SEG_D		PIND3	// D3
 #define  SEG_E		PIND4	// D4
-#define  SEG_F		PIND5	// D7
+#define  SEG_F		PIND7	// D7
 #define  SEG_G		PINB0	// D8
 
 // Prototipos de funciones
