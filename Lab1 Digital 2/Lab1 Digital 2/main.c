@@ -124,3 +124,10 @@ void configurarTimers(void) {
 ISR(TIMER0_COMPA_vect) {
 	milisegundos++;
 }
+
+// Timer1: Interrupción cada 1s
+ISR(TIMER1_COMPA_vect) {
+	segundoCompleto = 1;
+}
+
+//
