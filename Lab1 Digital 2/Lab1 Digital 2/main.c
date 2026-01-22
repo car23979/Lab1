@@ -130,4 +130,11 @@ ISR(TIMER1_COMPA_vect) {
 	segundoCompleto = 1;
 }
 
-//
+// Función para tiempo
+uint32_t obtenerMillis(void) {
+	uint32_t m;
+	cli();
+	m = milisegundos;
+	sei();
+	return m;
+}
