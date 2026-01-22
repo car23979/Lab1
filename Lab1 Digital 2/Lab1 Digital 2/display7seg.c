@@ -49,24 +49,24 @@ void display_mostrar_numero(uint8_t numero) {
 	display_apagar();
 	
 	// Segmento A
-	if (digitos[numero][0] == 0) PORTD &= ~(1 << SEG_A); 
-		else PORTD |= (1 << SEG_A);
+	if (digitos[numero][0] == 1) PORTD |= (1 << SEG_A); 
+		else PORTD &= ~ (1 << SEG_A);
 	// Segmento B
-	if (digitos[numero][1] == 0) PORTD &= ~(1 << SEG_B);
-		else PORTD |= (1 << SEG_B);
+	if (digitos[numero][1] == 1) PORTD |= (1 << SEG_B);
+		else PORTD &= ~ (1 << SEG_B);
 	// Segmento C
-	if (digitos[numero][2] == 0) PORTD &= ~(1 << SEG_C);
-		else PORTD |= (1 << SEG_C);
+	if (digitos[numero][2] == 1) PORTD |= (1 << SEG_C);
+		else PORTD &= ~ (1 << SEG_C);
 	// Segmento D
-	if (digitos[numero][3] == 0) PORTD &= ~(1 << SEG_D);
-		else PORTD |= (1 << SEG_D);
+	if (digitos[numero][3] == 1) PORTD |= (1 << SEG_D);
+		else PORTD &= ~ (1 << SEG_D);
 	// Segmento E
-	if (digitos[numero][4] == 0) PORTD &= ~(1 << SEG_E);
-		else PORTD |= (1 << SEG_E);
+	if (digitos[numero][4] == 1) PORTD |= (1 << SEG_E);
+		else PORTD &= ~ (1 << SEG_E);
 	// Segmento F
-	if (digitos[numero][5] == 0) PORTD &= ~(1 << SEG_F);
-		else PORTD |= (1 << SEG_F);
+	if (digitos[numero][5] == 1) PORTD |= (1 << SEG_F);
+		else PORTD &= ~ (1 << SEG_F);
 	// Segmento G
-	if (digitos[numero][5] == 0) PORTB &= ~(1 << SEG_F);
-		else PORTB |= (1 << SEG_G);
+	if (digitos[numero][6] == 1) PORTB |= (1 << SEG_F);
+		else PORTB &= ~ (1 << SEG_G);
 }

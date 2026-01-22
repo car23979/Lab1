@@ -311,7 +311,7 @@ void display_apagar(void) {
  1a6:	08 95       	ret
 
 000001a8 <display_init>:
-	{1,1,1,1,0,1,1},	// 9
+	{0,0,0,0,1,0,0},	// 9
 };
 
 void display_init(void) {
@@ -501,7 +501,7 @@ void display_mostrar_numero(uint8_t numero) {
  2c8:	20 62       	ori	r18, 0x20	; 32
  2ca:	2b b9       	out	0x0b, r18	; 11
 	// Segmento G
-	if (digitos[numero][5] == 0) PORTB &= ~(1 << SEG_F);
+	if (digitos[numero][6] == 0) PORTB &= ~(1 << SEG_F);
  2cc:	fc 01       	movw	r30, r24
  2ce:	ee 0f       	add	r30, r30
  2d0:	ff 1f       	adc	r31, r31
@@ -513,7 +513,7 @@ void display_mostrar_numero(uint8_t numero) {
  2dc:	f9 0b       	sbc	r31, r25
  2de:	e8 5e       	subi	r30, 0xE8	; 232
  2e0:	fe 4f       	sbci	r31, 0xFE	; 254
- 2e2:	85 81       	ldd	r24, Z+5	; 0x05
+ 2e2:	86 81       	ldd	r24, Z+6	; 0x06
  2e4:	81 11       	cpse	r24, r1
  2e6:	04 c0       	rjmp	.+8      	; 0x2f0 <display_mostrar_numero+0x136>
  2e8:	85 b1       	in	r24, 0x05	; 5
@@ -849,17 +849,17 @@ void manejarConteoRegresivo(void) {
  4ac:	80 91 62 01 	lds	r24, 0x0162	; 0x800162 <segundoCompleto>
  4b0:	88 23       	and	r24, r24
  4b2:	61 f1       	breq	.+88     	; 0x50c <manejarConteoRegresivo+0x60>
-		segundoCompleto = 0;  // Resetear flag
+		segundoCompleto = 0;  // Resetear Bandera
  4b4:	10 92 62 01 	sts	0x0162, r1	; 0x800162 <segundoCompleto>
 		
-		// Si es el primer segundo después de iniciar
+		// Primer segundo después de iniciar
 		if (primerSegundo) {
  4b8:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <primerSegundo.1794>
  4bc:	88 23       	and	r24, r24
  4be:	41 f0       	breq	.+16     	; 0x4d0 <manejarConteoRegresivo+0x24>
 			primerSegundo = 0;
  4c0:	10 92 10 01 	sts	0x0110, r1	; 0x800110 <primerSegundo.1794>
-			// Ya mostramos 5 por un segundo completo, ahora pasar a 4
+			// Contero regresivo
 			contadorRegresivo = 4;
  4c4:	84 e0       	ldi	r24, 0x04	; 4
  4c6:	80 93 11 01 	sts	0x0111, r24	; 0x800111 <contadorRegresivo>
@@ -895,7 +895,7 @@ void manejarConteoRegresivo(void) {
  4fa:	80 93 10 01 	sts	0x0110, r24	; 0x800110 <primerSegundo.1794>
 				display_apagar();	// Apagar display durante carrera
  4fe:	0e 94 cd 00 	call	0x19a	; 0x19a <display_apagar>
-				// Desactivar Timer1 ya que no lo necesitamos más
+				// Desactivar Timer1
 				TIMSK1 &= ~(1 << OCIE1A);
  502:	ef e6       	ldi	r30, 0x6F	; 111
  504:	f0 e0       	ldi	r31, 0x00	; 0
