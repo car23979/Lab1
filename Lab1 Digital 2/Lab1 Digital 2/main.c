@@ -1,8 +1,8 @@
 /*
  * Lab1 Digital 2.c
  *
- * Created: 22/01/2026 12:54:50 a. m.
- * Author : Admin
+ * Created: 19/01/2026 12:54:50 a. m.
+ * Author : David Carranza
  */ 
 
 #include <avr/io.h>
