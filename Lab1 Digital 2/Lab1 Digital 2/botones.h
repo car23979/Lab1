@@ -13,8 +13,8 @@
 
 // Definiciones de pines de botones
 #define BTN_INICIO		PINC3	// A3
-#define BTN_J1			PINC4	// A4
-#define BTN_J2			PINC5	// A5
+#define BTN_J1			PINC5	// A4
+#define BTN_J2			PINC4	// A5
 
 // Prototipos de funciones
 void botones_init(void);
