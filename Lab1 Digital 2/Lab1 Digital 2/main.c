@@ -1,0 +1,18 @@
+/*
+ * Lab1 Digital 2.c
+ *
+ * Created: 22/01/2026 12:54:50 a. m.
+ * Author : Admin
+ */ 
+
+#include <avr/io.h>
+
+
+int main(void)
+{
+    /* Replace with your application code */
+    while (1) 
+    {
+    }
+}
+
