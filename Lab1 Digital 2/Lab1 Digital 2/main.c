@@ -168,16 +168,15 @@ void manejarEsperaInicio(void) {
 
 
 void manejarConteoRegresivo(void) {
-	static uint8_t primerSegundo = 1;
+	static uint8_t cuentaIniciada = 0;
 	
 	// Verificar si ha pasado 1 segundo desde el último cambio
 	if (segundoCompleto) {
 		segundoCompleto = 0;  // Resetear Bandera
 		
-		// Primer segundo después de iniciar
-		if (primerSegundo) {
-			primerSegundo = 0;
-			// Contero regresivo
+		if (!cuentaIniciada) {
+			cuentaIniciada = 1;
+			// El 5 ya se mostró al iniciar, ahora esperamos 1s para el 4
 			contadorRegresivo = 4;
 			display_mostrar_numero(4);
 			return;
@@ -188,14 +187,18 @@ void manejarConteoRegresivo(void) {
 			contadorRegresivo--;
 			display_mostrar_numero(contadorRegresivo);
 			
+			// Cuando llegue a 0, aún se muestra el 0 por 1 segundo
 			if (contadorRegresivo == 0) {
-				// Fin del conteo, comenzar carrera
-				estadoActual = CARRERA_EN_CURSO;
-				primerSegundo = 1;  // Resetear para el próximo conteo
-				display_apagar();	// Apagar display durante carrera
-				// Desactivar Timer1
-				TIMSK1 &= ~(1 << OCIE1A);
+				// El 0 se mostrará en la siguiente iteración
 			}
+		}
+		else if (contadorRegresivo == 0) {
+			// Mostrar el 0, ahora pasar a carrera
+			estadoActual = CARRERA_EN_CURSO;
+			cuentaIniciada = 0;  // Resetear 
+			display_apagar();	// Apagar display durante carrera
+			// Desactivar Timer1
+			TIMSK1 &= ~(1 << OCIE1A);
 		}
 	}
 }
