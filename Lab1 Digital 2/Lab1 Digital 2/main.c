@@ -65,7 +65,7 @@ void configurarPuertos(void) {
 	
 	// Configuración de LEDs J2 como salidas
 	DDRB |= (1 << J2_LED0);
-	DDRC |= (1 << J1_LED1) | (1 << J1_LED2) | (1 << J1_LED3);
+	DDRC |= (1 << J2_LED1) | (1 << J2_LED2) | (1 << J2_LED3);
 	
 	// Los botones se configuran en botones_init()		
 }
@@ -87,7 +87,7 @@ void actualizarLEDsJugador1(uint8_t valor) {
 // LEDs J2
 void actualizarLEDsJugador2(uint8_t valor) {
 	// Mostrar valor binario en LEDs J2
-	if (valor & 0x01) PORTB |= (1 << J1_LED0);
+	if (valor & 0x01) PORTB |= (1 << J2_LED0);
 	else PORTB &= ~(1 << J2_LED0);
 	if (valor & 0x02) PORTC |= (1 << J2_LED1);
 	else PORTC &= ~(1 << J2_LED1);
