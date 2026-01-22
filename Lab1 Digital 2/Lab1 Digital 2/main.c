@@ -42,3 +42,42 @@ volatile uint8_t contadorRegresivo = 5;
 volatile uint8_t contadorJugador1 = 0;
 volatile uint8_t contadorJugador2 = 0;
 volatile uint8_t ganador = 0;	// 0 es ninguno, 1 = J1, 2=J2, 3 es empate
+
+// Meta
+#define META 9 // 9 es 1001 en binario
+
+// Variables para el problema de inicialización del conteo
+volatile uint8_t inicioConteoFlag = 0;
+volatile uint8_t tiempoInicioConteo = 0;
+
+// Variables de tiempo
+volatile uint32_t milisegundos = 0;
+volatile uint8_t segundoCompleto = 0;
+
+// Funciones de Configuración
+void configurarPuertos(void) {
+	// Los segmentos del display se configuran en display7seg_init()
+	
+	// Configuración de LEDs J1 como salidas
+	DDRB |= (1 << J1_LED0) | (1 << J1_LED1) |
+			(1 << J1_LED2) | (1 << J1_LED3);
+	
+	// Configuración de LEDs J2 como salidas
+	DDRB |= (1 << J2_LED0);
+	DDRC |= (1 << J1_LED1) | (1 << J1_LED2) | (1 << J1_LED3);
+	
+	// Los botones se configuran en botones_init()		
+}
+
+// Funciones LEDs
+void actualizarLEDsJugador1(uint8_t valor) {
+	// Mostrar valor binario en LEDs J1
+	if (valor & 0x01) PORTB |= (1 << J1_LED0);
+		else PORTB &= ~(1 << J1_LED0);
+	if (valor & 0x02) PORTB |= (1 << J1_LED1);
+		else PORTB &= ~(1 << J1_LED1);
+	if (valor & 0x04) PORTB |= (1 << J1_LED2);
+		else PORTB &= ~(1 << J1_LED2);
+	if (valor & 0x08) PORTB |= (1 << J1_LED3);
+		else PORTB &= ~(1 << J1_LED3);
+}
