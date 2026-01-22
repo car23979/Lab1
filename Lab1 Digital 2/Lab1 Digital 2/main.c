@@ -168,21 +168,22 @@ void manejarEsperaInicio(void) {
 }
 
 void manejarConteoRegresivo(void) {
-	static uint32_t ultimoCambio = 0;
-	uint32_t tiempoActual = obtenerMillis();
+	static uint8_t primerSegundo = 1;
 	
 	// Verificar si ha pasado 1 segundo desde el último cambio
 	if (segundoCompleto) {
-		segundoCompleto = 0; obtenerMillis();
+		segundoCompleto = 0;  // Resetear flag
 		
-		// Si es el inicio, asegurar que mostramos 5 por al menos 1 segundo
-		if (inicioConteoFlag) {
-			inicioConteoFlag = 0;
-			ultimoCambio = tiempoActual;
-			return; // Mantener 5 por un segundo completo
+		// Si es el primer segundo después de iniciar
+		if (primerSegundo) {
+			primerSegundo = 0;
+			// Ya mostramos 5 por un segundo completo, ahora pasar a 4
+			contadorRegresivo = 4;
+			display_mostrar_numero(4);
+			return;
 		}
 		
-		// Decrementar contador
+		// Decrementar contador para los siguientes segundos
 		if (contadorRegresivo > 0) {
 			contadorRegresivo--;
 			display_mostrar_numero(contadorRegresivo);
@@ -190,6 +191,7 @@ void manejarConteoRegresivo(void) {
 			if (contadorRegresivo == 0) {
 				// Fin del conteo, comenzar carrera
 				estadoActual = CARRERA_EN_CURSO;
+				primerSegundo = 1;  // Resetear para el próximo conteo
 				display_apagar();	// Apagar display durante carrera
 				// Desactivar Timer1 ya que no lo necesitamos más
 				TIMSK1 &= ~(1 << OCIE1A);
