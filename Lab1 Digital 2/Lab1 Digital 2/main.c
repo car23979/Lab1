@@ -167,3 +167,41 @@ void manejarEsperaInicio(void) {
 	}
 }
 
+void manejarConteoRegresivo(void) {
+	static uint32_t ultimoCambio = 0;
+	uint32_t tiempoActual = obtenerMillis();
+	
+	// Verificar si ha pasado 1 segundo desde el último cambio
+	if (segundoCompleto) {
+		segundoCompleto = 0; obtenerMillis();
+		
+		// Si es el inicio, asegurar que mostramos 5 por al menos 1 segundo
+		if (inicioConteoFlag) {
+			inicioConteoFlag = 0;
+			ultimoCambio = tiempoActual;
+			return; // Mantener 5 por un segundo completo
+		}
+		
+		// Decrementar contador
+		if (contadorRegresivo > 0) {
+			contadorRegresivo--;
+			display_mostrar_numero(contadorRegresivo);
+			
+			if (contadorRegresivo == 0) {
+				// Fin del conteo, comenzar carrera
+				estadoActual = CARRERA_EN_CURSO;
+				display_apagar();	// Apagar display durante carrera
+				// Desactivar Timer1 ya que no lo necesitamos más
+				TIMSK1 &= ~(1 << OCIE1A);
+			}
+		}
+	}
+}
+
+void manejarCarrera(void) {
+	// Botón J1
+	if (boton_j1_presionado()) {
+		if () {
+		}
+	}
+}
