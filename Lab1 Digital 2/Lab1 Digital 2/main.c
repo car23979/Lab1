@@ -70,6 +70,7 @@ void configurarPuertos(void) {
 }
 
 // Funciones LEDs
+// LEDs J1
 void actualizarLEDsJugador1(uint8_t valor) {
 	// Mostrar valor binario en LEDs J1
 	if (valor & 0x01) PORTB |= (1 << J1_LED0);
@@ -80,4 +81,17 @@ void actualizarLEDsJugador1(uint8_t valor) {
 		else PORTB &= ~(1 << J1_LED2);
 	if (valor & 0x08) PORTB |= (1 << J1_LED3);
 		else PORTB &= ~(1 << J1_LED3);
+}
+
+// LEDs J2
+void actualizarLEDsJugador2(uint8_t valor) {
+	// Mostrar valor binario en LEDs J1
+	if (valor & 0x01) PORTB |= (1 << J1_LED0);
+	else PORTB &= ~(1 << J2_LED0);
+	if (valor & 0x02) PORTC |= (1 << J2_LED1);
+	else PORTC &= ~(1 << J2_LED1);
+	if (valor & 0x04) PORTC |= (1 << J2_LED2);
+	else PORTC &= ~(1 << J2_LED2);
+	if (valor & 0x08) PORTC |= (1 << J2_LED3);
+	else PORTC &= ~(1 << J2_LED3);
 }
