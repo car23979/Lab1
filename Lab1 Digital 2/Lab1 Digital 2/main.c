@@ -24,3 +24,16 @@
 #define J2_LED1		PINC0	// A0	- bit 1
 #define J2_LED2		PINC1	// A1	- bit 2
 #define J2_LED3		PINC2	// A2	- bit 3
+
+
+// Varaibles Globales
+// Estados del juego
+typedef enum {
+	ESPERANDO_INICIO,
+	CONTEO_REGRESIVO,
+	CARRERA_EN_CURSO,
+	CARRERA_TERMINADA
+	} EstadoJuego;
+
+EstadoJuego estadoActual = ESPERANDO_INICIO
+
