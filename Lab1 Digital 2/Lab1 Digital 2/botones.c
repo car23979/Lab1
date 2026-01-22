@@ -57,3 +57,19 @@ void botones_actualizar(uint32_t tiempo_actual) {
 	}
 }
 
+uint8_t boton_inicio_presionado(void) {
+	if (btn_inicio.presionado_flag) {
+		btn_inicio.presionado_flag = 0;
+		return 1;
+	}
+	return 0;
+}
+
+uint8_t boton_j1_presionado(void) {
+	if (btn_j1.presionado_flag) {
+		btn_j1.presionado_flag = 0;
+		return 1;
+	}
+	return 0;
+}
+
