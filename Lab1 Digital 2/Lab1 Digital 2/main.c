@@ -118,3 +118,9 @@ void configurarTimers(void) {
 	OCR1A = 15624;							// 16MHz/1024 = 15625Hz -> 15625-1 = 15624
 	// Timer1 inicialmente desactivado
 }
+
+// Interrupciones
+// Timer0: Interrupción cada 1ms
+ISR(TIMER0_COMPA_vect) {
+	milisegundos++;
+}
