@@ -138,3 +138,18 @@ uint32_t obtenerMillis(void) {
 	sei();
 	return m;
 }
+
+// Maquina de estados
+void manejarEsperaInicio(void) {
+	// Mostrar 0 en display
+	display_mostrar_numero(0);
+	
+	// Apagar todos los LEDs y resetear contadores
+	apagarTodosLEDs();
+	contadorJugador1 = 0;
+	contadorJugador2 = 0;
+	ganador = 0;
+	
+	// Verificar botón de inicio
+	
+}
