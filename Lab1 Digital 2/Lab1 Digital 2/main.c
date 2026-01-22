@@ -266,7 +266,15 @@ void manejarFinCarrera(void) {
 		}
 		
 		if (mostrarGanador) {
-			display_mostrar_numero(0)
+			display_mostrar_numero(0);
+			// Encender todos los LEDs de ambos jugadores
+			actualizarLEDsJugador1(0x0F);
+			actualizarLEDsJugador2(0x0F);
+		} else {
+			display_apagar();
+			apagarTodosLEDs();
 		}
 	}
+	
+	
 }
