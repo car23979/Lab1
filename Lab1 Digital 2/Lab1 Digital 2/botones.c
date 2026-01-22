@@ -22,3 +22,8 @@ static Boton btn_inicio = {BTN_INICIO, 1, 1, 0, 0};
 static Boton btn_j1 = {BTN_J1, 1, 1, 0, 0};
 static Boton btn_j2 = {BTN_J2, 1, 1, 0, 0};
 
+void botones_init(void) {
+	// Configurar botones como entradas con pull-up interno
+	DDRC &= ~((1 << BTN_INICIO) | (1 << BTN_J1) | (1 << BTN_J2));
+	PORTC |= (1 << BTN_INICIO) | (1 << BTN_J1) | (1 << BTN_J2);
+}
