@@ -20,6 +20,9 @@
 #define  SEG_F		PIND5	// D7
 #define  SEG_G		PINB0	// D8
 
-
+// Prototipos de funciones
+void display_init(void);
+void display_mostrar_numero(uint8_t numero);
+void display_apagar(void);
 
 #endif /* DISPLAY7SEG.H_H_ */
