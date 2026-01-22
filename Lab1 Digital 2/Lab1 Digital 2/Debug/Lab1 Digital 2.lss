@@ -294,11 +294,11 @@ uint8_t boton_j2_presionado(void) {
  198:	08 95       	ret
 
 0000019a <display_apagar>:
-	display_apagar();
 }
 
 void display_apagar(void) {
-	// Apagar todos los segmentos (HIGH para ánodo común)
+	// ÁNODO COMÚN: HIGH = apagado, LOW = encendido
+	// Para apagar: poner todos los segmentos en HIGH
 	PORTD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C) |
  19a:	8b b1       	in	r24, 0x0b	; 11
  19c:	8c 67       	ori	r24, 0x7C	; 124
@@ -311,11 +311,11 @@ void display_apagar(void) {
  1a6:	08 95       	ret
 
 000001a8 <display_init>:
-	 {0,0,0,0,1,0,0}  // 9
+	{0,0,0,0,1,0,0}  // 9
 };
 
 void display_init(void) {
-	// Configurar pines de segmentos como salidas
+	// Configurar pines como salidas
 	DDRD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C) |
  1a8:	8a b1       	in	r24, 0x0a	; 10
  1aa:	8c 67       	ori	r24, 0x7C	; 124
@@ -350,7 +350,7 @@ void display_mostrar_numero(uint8_t numero) {
  1c6:	97 c0       	rjmp	.+302    	; 0x2f6 <display_mostrar_numero+0x13c>
 	}
 	
-	// Apagar display primero
+	// Apagar todos los segmentos primero
 	display_apagar();
  1c8:	0e 94 cd 00 	call	0x19a	; 0x19a <display_apagar>
 	

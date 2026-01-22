@@ -7,22 +7,24 @@
 
 #include "display7seg.h"
 
-// Tabla de conversión para cátodo común
+// TABLA PARA ÁNODO COMÚN (0=encendido, 1=apagado)
+// Orden de segmentos: A, B, C, D, E, F, G
 static const uint8_t digitos[10][7] = {
-	 {0,0,0,0,0,0,1}, // 0
-	 {1,0,0,1,1,1,1}, // 1
-	 {0,0,1,0,0,1,0}, // 2
-	 {0,0,0,0,1,1,0}, // 3
-	 {1,0,0,1,1,0,0}, // 4
-	 {0,1,0,0,1,0,0}, // 5
-	 {0,1,0,0,0,0,0}, // 6
-	 {0,0,0,1,1,1,1}, // 7
-	 {0,0,0,0,0,0,0}, // 8
-	 {0,0,0,0,1,0,0}  // 9
+	// A  B  C  D  E  F  G
+	{0,0,0,0,0,0,1}, // 0
+	{1,0,0,1,1,1,1}, // 1
+	{0,0,1,0,0,1,0}, // 2
+	{0,0,0,0,1,1,0}, // 3
+	{1,0,0,1,1,0,0}, // 4
+	{0,1,0,0,1,0,0}, // 5
+	{0,1,0,0,0,0,0}, // 6
+	{0,0,0,1,1,1,1}, // 7
+	{0,0,0,0,0,0,0}, // 8
+	{0,0,0,0,1,0,0}  // 9
 };
 
 void display_init(void) {
-	// Configurar pines de segmentos como salidas
+	// Configurar pines como salidas
 	DDRD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C) |
 	(1 << SEG_D) | (1 << SEG_E) | (1 << SEG_F);
 	DDRB |= (1 << SEG_G);
@@ -32,7 +34,8 @@ void display_init(void) {
 }
 
 void display_apagar(void) {
-	// Apagar todos los segmentos (HIGH para ánodo común)
+	// ÁNODO COMÚN: HIGH = apagado, LOW = encendido
+	// Para apagar: poner todos los segmentos en HIGH
 	PORTD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C) |
 	(1 << SEG_D) | (1 << SEG_E) | (1 << SEG_F);
 	PORTB |= (1 << SEG_G);
@@ -45,7 +48,7 @@ void display_mostrar_numero(uint8_t numero) {
 		return;
 	}
 	
-	// Apagar display primero
+	// Apagar todos los segmentos primero
 	display_apagar();
 	
 	// Segmento A
