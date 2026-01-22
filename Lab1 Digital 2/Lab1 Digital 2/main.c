@@ -154,18 +154,18 @@ void manejarEsperaInicio(void) {
 	// Verificar botón de inicio
 	if (boton_inicio_presionado()) {
 		estadoActual = CONTEO_REGRESIVO;
-		contadorRegresivo = 5;
-		tiempoInicioConteo = 0;
-		inicioConteoFlag = 1;	// Indicar que el conteo acaba de empezar
+		contadorRegresivo = 5;  // Comenzar en 5
 		
 		// Configurar Timer1 para 1 segundo
 		TCNT1 = 0;					// Reiniciar contador
 		TIMSK1 |= (1 << OCIE1A);	// Habilitar interrupción
 		
-		// Mostrar primer número 5
+		// Mostrar primer número 5 INMEDIATAMENTE
 		display_mostrar_numero(5);
 	}
 }
+
+
 
 void manejarConteoRegresivo(void) {
 	static uint8_t primerSegundo = 1;
