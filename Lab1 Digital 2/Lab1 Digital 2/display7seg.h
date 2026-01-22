@@ -1,8 +1,8 @@
 /*
  * display7seg.h
  *
- * Created: 22/01/2026 01:03:30 a. m.
- *  Author: Admin
+ * Created: 19/01/2026 01:03:30 a. m.
+ *  Author: David Carranza
  */ 
 
 
