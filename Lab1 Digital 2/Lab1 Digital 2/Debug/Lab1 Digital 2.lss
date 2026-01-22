@@ -939,10 +939,10 @@ void manejarCarrera(void) {
  544:	0e 94 c5 00 	call	0x18a	; 0x18a <boton_j2_presionado>
  548:	88 23       	and	r24, r24
  54a:	b9 f0       	breq	.+46     	; 0x57a <manejarCarrera+0x6c>
-		if (contadorJugador2) {
+		if (contadorJugador2 < META) {
  54c:	80 91 6b 01 	lds	r24, 0x016B	; 0x80016b <contadorJugador2>
- 550:	88 23       	and	r24, r24
- 552:	99 f0       	breq	.+38     	; 0x57a <manejarCarrera+0x6c>
+ 550:	89 30       	cpi	r24, 0x09	; 9
+ 552:	98 f4       	brcc	.+38     	; 0x57a <manejarCarrera+0x6c>
 			contadorJugador2++;
  554:	80 91 6b 01 	lds	r24, 0x016B	; 0x80016b <contadorJugador2>
  558:	8f 5f       	subi	r24, 0xFF	; 255

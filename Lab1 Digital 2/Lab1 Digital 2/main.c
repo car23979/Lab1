@@ -217,7 +217,7 @@ void manejarCarrera(void) {
 	
 	// Botón J2
 	if (boton_j2_presionado()) {
-		if (contadorJugador2) {
+		if (contadorJugador2 < META) {
 			contadorJugador2++;
 			actualizarLEDsJugador2(contadorJugador2);
 			
