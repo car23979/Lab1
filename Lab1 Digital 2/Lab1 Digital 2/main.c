@@ -290,5 +290,13 @@ int main(void) {
 	botones_init();			// Inicializar librería de botones
 	configurarTimers();		// Configurar timers para interrupciones
 	
-	//
+	// Habilitar interrupciones globales
+	sei();
+	
+	// Estado inicial
+	display_apagar();
+	apagarTodosLEDs();
+	
+	// Bucle principal
+	
 }
