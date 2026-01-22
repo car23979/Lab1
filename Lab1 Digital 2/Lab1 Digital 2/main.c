@@ -37,3 +37,8 @@ typedef enum {
 
 EstadoJuego estadoActual = ESPERANDO_INICIO
 
+// Contadores
+volatile uint8_t contadorRegresivo = 5;
+volatile uint8_t contadorJugador1 = 0;
+volatile uint8_t contadorJugador2 = 0;
+volatile uint8_t ganador = 0;	// 0 es ninguno, 1 = J1, 2=J2, 3 es empate
