@@ -172,12 +172,12 @@ void manejarConteoRegresivo(void) {
 	
 	// Verificar si ha pasado 1 segundo desde el último cambio
 	if (segundoCompleto) {
-		segundoCompleto = 0;  // Resetear flag
+		segundoCompleto = 0;  // Resetear Bandera
 		
-		// Si es el primer segundo después de iniciar
+		// Primer segundo después de iniciar
 		if (primerSegundo) {
 			primerSegundo = 0;
-			// Ya mostramos 5 por un segundo completo, ahora pasar a 4
+			// Contero regresivo
 			contadorRegresivo = 4;
 			display_mostrar_numero(4);
 			return;
@@ -193,7 +193,7 @@ void manejarConteoRegresivo(void) {
 				estadoActual = CARRERA_EN_CURSO;
 				primerSegundo = 1;  // Resetear para el próximo conteo
 				display_apagar();	// Apagar display durante carrera
-				// Desactivar Timer1 ya que no lo necesitamos más
+				// Desactivar Timer1
 				TIMSK1 &= ~(1 << OCIE1A);
 			}
 		}
