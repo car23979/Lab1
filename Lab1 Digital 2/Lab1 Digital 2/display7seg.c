@@ -9,16 +9,16 @@
 
 // Tabla de conversión para cátodo común
 static const uint8_t digitos[10][7] = {
-	{0,0,0,0,0,0,1},	// 0
-	{1,0,0,1,1,1,1},	// 1
-	{0,0,1,0,0,1,0},	// 2
-	{0,0,0,0,1,1,0},	// 3
-	{1,0,0,1,1,0,0},	// 4
-	{0,1,0,0,1,0,0},	// 5
-	{0,1,0,0,0,0,0},	// 6
-	{0,0,0,1,1,1,1},	// 7
-	{0,0,0,0,0,0,0},	// 8
-	{0,0,0,0,1,0,0},	// 9
+	 {1,1,1,1,1,1,0}, // 0
+	 {0,1,1,0,0,0,0}, // 1
+	 {1,1,0,1,1,0,1}, // 2
+	 {1,1,1,1,0,0,1}, // 3
+	 {0,1,1,0,0,1,1}, // 4
+	 {1,0,1,1,0,1,1}, // 5
+	 {1,0,1,1,1,1,1}, // 6
+	 {1,1,1,0,0,0,0}, // 7
+	 {1,1,1,1,1,1,1}, // 8
+	 {1,1,1,1,0,1,1}  // 9
 };
 
 void display_init(void) {
@@ -32,10 +32,10 @@ void display_init(void) {
 }
 
 void display_apagar(void) {
-	// Apagar todos los segmentos (High para ánodo común)
-	PORTD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C)	|
+	// Apagar todos los segmentos (low para cátodo común)
+	PORTD &= ~ (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C)	|
 			 (1 << SEG_D) | (1 << SEG_E) | (1 << SEG_F);
-	PORTB |= (1 << SEG_G);
+	PORTB &= ~ (1 << SEG_G);
 }
 
 void display_mostrar_numero(uint8_t numero) {

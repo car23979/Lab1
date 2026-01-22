@@ -298,20 +298,20 @@ uint8_t boton_j2_presionado(void) {
 }
 
 void display_apagar(void) {
-	// Apagar todos los segmentos (High para ánodo común)
-	PORTD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C)	|
+	// Apagar todos los segmentos (low para cátodo común)
+	PORTD &= ~ (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C)	|
  19a:	8b b1       	in	r24, 0x0b	; 11
- 19c:	8c 67       	ori	r24, 0x7C	; 124
+ 19c:	8f 7b       	andi	r24, 0xBF	; 191
  19e:	8b b9       	out	0x0b, r24	; 11
 			 (1 << SEG_D) | (1 << SEG_E) | (1 << SEG_F);
-	PORTB |= (1 << SEG_G);
+	PORTB &= ~ (1 << SEG_G);
  1a0:	85 b1       	in	r24, 0x05	; 5
- 1a2:	81 60       	ori	r24, 0x01	; 1
+ 1a2:	8e 7f       	andi	r24, 0xFE	; 254
  1a4:	85 b9       	out	0x05, r24	; 5
  1a6:	08 95       	ret
 
 000001a8 <display_init>:
-	{0,0,0,0,1,0,0},	// 9
+	 {1,1,1,1,0,1,1}  // 9
 };
 
 void display_init(void) {
@@ -332,9 +332,9 @@ void display_init(void) {
  1b8:	08 95       	ret
 
 000001ba <display_mostrar_numero>:
-	PORTD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C)	|
+	PORTD &= ~ (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C)	|
 			 (1 << SEG_D) | (1 << SEG_E) | (1 << SEG_F);
-	PORTB |= (1 << SEG_G);
+	PORTB &= ~ (1 << SEG_G);
 }
 
 void display_mostrar_numero(uint8_t numero) {
@@ -355,7 +355,7 @@ void display_mostrar_numero(uint8_t numero) {
  1c8:	0e 94 cd 00 	call	0x19a	; 0x19a <display_apagar>
 	
 	// Segmento A
-	if (digitos[numero][0] == 0) PORTD &= ~(1 << SEG_A); 
+	if (digitos[numero][0] == 1) PORTD |= (1 << SEG_A); 
  1cc:	8c 2f       	mov	r24, r28
  1ce:	90 e0       	ldi	r25, 0x00	; 0
  1d0:	fc 01       	movw	r30, r24
@@ -370,18 +370,18 @@ void display_mostrar_numero(uint8_t numero) {
  1e2:	e8 5e       	subi	r30, 0xE8	; 232
  1e4:	fe 4f       	sbci	r31, 0xFE	; 254
  1e6:	20 81       	ld	r18, Z
- 1e8:	21 11       	cpse	r18, r1
- 1ea:	04 c0       	rjmp	.+8      	; 0x1f4 <display_mostrar_numero+0x3a>
+ 1e8:	21 30       	cpi	r18, 0x01	; 1
+ 1ea:	21 f4       	brne	.+8      	; 0x1f4 <display_mostrar_numero+0x3a>
  1ec:	2b b1       	in	r18, 0x0b	; 11
- 1ee:	2f 7b       	andi	r18, 0xBF	; 191
+ 1ee:	20 64       	ori	r18, 0x40	; 64
  1f0:	2b b9       	out	0x0b, r18	; 11
  1f2:	03 c0       	rjmp	.+6      	; 0x1fa <display_mostrar_numero+0x40>
-		else PORTD |= (1 << SEG_A);
+		else PORTD &= ~ (1 << SEG_A);
  1f4:	2b b1       	in	r18, 0x0b	; 11
- 1f6:	20 64       	ori	r18, 0x40	; 64
+ 1f6:	2f 7b       	andi	r18, 0xBF	; 191
  1f8:	2b b9       	out	0x0b, r18	; 11
 	// Segmento B
-	if (digitos[numero][1] == 0) PORTD &= ~(1 << SEG_B);
+	if (digitos[numero][1] == 1) PORTD |= (1 << SEG_B);
  1fa:	fc 01       	movw	r30, r24
  1fc:	ee 0f       	add	r30, r30
  1fe:	ff 1f       	adc	r31, r31
@@ -394,18 +394,18 @@ void display_mostrar_numero(uint8_t numero) {
  20c:	e8 5e       	subi	r30, 0xE8	; 232
  20e:	fe 4f       	sbci	r31, 0xFE	; 254
  210:	21 81       	ldd	r18, Z+1	; 0x01
- 212:	21 11       	cpse	r18, r1
- 214:	04 c0       	rjmp	.+8      	; 0x21e <display_mostrar_numero+0x64>
+ 212:	21 30       	cpi	r18, 0x01	; 1
+ 214:	21 f4       	brne	.+8      	; 0x21e <display_mostrar_numero+0x64>
  216:	2b b1       	in	r18, 0x0b	; 11
- 218:	2f 7d       	andi	r18, 0xDF	; 223
+ 218:	20 62       	ori	r18, 0x20	; 32
  21a:	2b b9       	out	0x0b, r18	; 11
  21c:	03 c0       	rjmp	.+6      	; 0x224 <display_mostrar_numero+0x6a>
-		else PORTD |= (1 << SEG_B);
+		else PORTD &= ~ (1 << SEG_B);
  21e:	2b b1       	in	r18, 0x0b	; 11
- 220:	20 62       	ori	r18, 0x20	; 32
+ 220:	2f 7d       	andi	r18, 0xDF	; 223
  222:	2b b9       	out	0x0b, r18	; 11
 	// Segmento C
-	if (digitos[numero][2] == 0) PORTD &= ~(1 << SEG_C);
+	if (digitos[numero][2] == 1) PORTD |= (1 << SEG_C);
  224:	fc 01       	movw	r30, r24
  226:	ee 0f       	add	r30, r30
  228:	ff 1f       	adc	r31, r31
@@ -418,18 +418,18 @@ void display_mostrar_numero(uint8_t numero) {
  236:	e8 5e       	subi	r30, 0xE8	; 232
  238:	fe 4f       	sbci	r31, 0xFE	; 254
  23a:	22 81       	ldd	r18, Z+2	; 0x02
- 23c:	21 11       	cpse	r18, r1
- 23e:	04 c0       	rjmp	.+8      	; 0x248 <display_mostrar_numero+0x8e>
+ 23c:	21 30       	cpi	r18, 0x01	; 1
+ 23e:	21 f4       	brne	.+8      	; 0x248 <display_mostrar_numero+0x8e>
  240:	2b b1       	in	r18, 0x0b	; 11
- 242:	2b 7f       	andi	r18, 0xFB	; 251
+ 242:	24 60       	ori	r18, 0x04	; 4
  244:	2b b9       	out	0x0b, r18	; 11
  246:	03 c0       	rjmp	.+6      	; 0x24e <display_mostrar_numero+0x94>
-		else PORTD |= (1 << SEG_C);
+		else PORTD &= ~ (1 << SEG_C);
  248:	2b b1       	in	r18, 0x0b	; 11
- 24a:	24 60       	ori	r18, 0x04	; 4
+ 24a:	2b 7f       	andi	r18, 0xFB	; 251
  24c:	2b b9       	out	0x0b, r18	; 11
 	// Segmento D
-	if (digitos[numero][3] == 0) PORTD &= ~(1 << SEG_D);
+	if (digitos[numero][3] == 1) PORTD |= (1 << SEG_D);
  24e:	fc 01       	movw	r30, r24
  250:	ee 0f       	add	r30, r30
  252:	ff 1f       	adc	r31, r31
@@ -442,18 +442,18 @@ void display_mostrar_numero(uint8_t numero) {
  260:	e8 5e       	subi	r30, 0xE8	; 232
  262:	fe 4f       	sbci	r31, 0xFE	; 254
  264:	23 81       	ldd	r18, Z+3	; 0x03
- 266:	21 11       	cpse	r18, r1
- 268:	04 c0       	rjmp	.+8      	; 0x272 <display_mostrar_numero+0xb8>
+ 266:	21 30       	cpi	r18, 0x01	; 1
+ 268:	21 f4       	brne	.+8      	; 0x272 <display_mostrar_numero+0xb8>
  26a:	2b b1       	in	r18, 0x0b	; 11
- 26c:	27 7f       	andi	r18, 0xF7	; 247
+ 26c:	28 60       	ori	r18, 0x08	; 8
  26e:	2b b9       	out	0x0b, r18	; 11
  270:	03 c0       	rjmp	.+6      	; 0x278 <display_mostrar_numero+0xbe>
-		else PORTD |= (1 << SEG_D);
+		else PORTD &= ~ (1 << SEG_D);
  272:	2b b1       	in	r18, 0x0b	; 11
- 274:	28 60       	ori	r18, 0x08	; 8
+ 274:	27 7f       	andi	r18, 0xF7	; 247
  276:	2b b9       	out	0x0b, r18	; 11
 	// Segmento E
-	if (digitos[numero][4] == 0) PORTD &= ~(1 << SEG_E);
+	if (digitos[numero][4] == 1) PORTD |= (1 << SEG_E);
  278:	fc 01       	movw	r30, r24
  27a:	ee 0f       	add	r30, r30
  27c:	ff 1f       	adc	r31, r31
@@ -466,18 +466,18 @@ void display_mostrar_numero(uint8_t numero) {
  28a:	e8 5e       	subi	r30, 0xE8	; 232
  28c:	fe 4f       	sbci	r31, 0xFE	; 254
  28e:	24 81       	ldd	r18, Z+4	; 0x04
- 290:	21 11       	cpse	r18, r1
- 292:	04 c0       	rjmp	.+8      	; 0x29c <display_mostrar_numero+0xe2>
+ 290:	21 30       	cpi	r18, 0x01	; 1
+ 292:	21 f4       	brne	.+8      	; 0x29c <display_mostrar_numero+0xe2>
  294:	2b b1       	in	r18, 0x0b	; 11
- 296:	2f 7e       	andi	r18, 0xEF	; 239
+ 296:	20 61       	ori	r18, 0x10	; 16
  298:	2b b9       	out	0x0b, r18	; 11
  29a:	03 c0       	rjmp	.+6      	; 0x2a2 <display_mostrar_numero+0xe8>
-		else PORTD |= (1 << SEG_E);
+		else PORTD &= ~ (1 << SEG_E);
  29c:	2b b1       	in	r18, 0x0b	; 11
- 29e:	20 61       	ori	r18, 0x10	; 16
+ 29e:	2f 7e       	andi	r18, 0xEF	; 239
  2a0:	2b b9       	out	0x0b, r18	; 11
 	// Segmento F
-	if (digitos[numero][5] == 0) PORTD &= ~(1 << SEG_F);
+	if (digitos[numero][5] == 1) PORTD |= (1 << SEG_F);
  2a2:	fc 01       	movw	r30, r24
  2a4:	ee 0f       	add	r30, r30
  2a6:	ff 1f       	adc	r31, r31
@@ -490,18 +490,18 @@ void display_mostrar_numero(uint8_t numero) {
  2b4:	e8 5e       	subi	r30, 0xE8	; 232
  2b6:	fe 4f       	sbci	r31, 0xFE	; 254
  2b8:	25 81       	ldd	r18, Z+5	; 0x05
- 2ba:	21 11       	cpse	r18, r1
- 2bc:	04 c0       	rjmp	.+8      	; 0x2c6 <display_mostrar_numero+0x10c>
+ 2ba:	21 30       	cpi	r18, 0x01	; 1
+ 2bc:	21 f4       	brne	.+8      	; 0x2c6 <display_mostrar_numero+0x10c>
  2be:	2b b1       	in	r18, 0x0b	; 11
- 2c0:	2f 7d       	andi	r18, 0xDF	; 223
+ 2c0:	20 62       	ori	r18, 0x20	; 32
  2c2:	2b b9       	out	0x0b, r18	; 11
  2c4:	03 c0       	rjmp	.+6      	; 0x2cc <display_mostrar_numero+0x112>
-		else PORTD |= (1 << SEG_F);
+		else PORTD &= ~ (1 << SEG_F);
  2c6:	2b b1       	in	r18, 0x0b	; 11
- 2c8:	20 62       	ori	r18, 0x20	; 32
+ 2c8:	2f 7d       	andi	r18, 0xDF	; 223
  2ca:	2b b9       	out	0x0b, r18	; 11
 	// Segmento G
-	if (digitos[numero][6] == 0) PORTB &= ~(1 << SEG_F);
+	if (digitos[numero][6] == 1) PORTB |= (1 << SEG_F);
  2cc:	fc 01       	movw	r30, r24
  2ce:	ee 0f       	add	r30, r30
  2d0:	ff 1f       	adc	r31, r31
@@ -514,15 +514,15 @@ void display_mostrar_numero(uint8_t numero) {
  2de:	e8 5e       	subi	r30, 0xE8	; 232
  2e0:	fe 4f       	sbci	r31, 0xFE	; 254
  2e2:	86 81       	ldd	r24, Z+6	; 0x06
- 2e4:	81 11       	cpse	r24, r1
- 2e6:	04 c0       	rjmp	.+8      	; 0x2f0 <display_mostrar_numero+0x136>
+ 2e4:	81 30       	cpi	r24, 0x01	; 1
+ 2e6:	21 f4       	brne	.+8      	; 0x2f0 <display_mostrar_numero+0x136>
  2e8:	85 b1       	in	r24, 0x05	; 5
- 2ea:	8f 7d       	andi	r24, 0xDF	; 223
+ 2ea:	80 62       	ori	r24, 0x20	; 32
  2ec:	85 b9       	out	0x05, r24	; 5
  2ee:	03 c0       	rjmp	.+6      	; 0x2f6 <display_mostrar_numero+0x13c>
-		else PORTB |= (1 << SEG_G);
+		else PORTB &= ~ (1 << SEG_G);
  2f0:	85 b1       	in	r24, 0x05	; 5
- 2f2:	81 60       	ori	r24, 0x01	; 1
+ 2f2:	8e 7f       	andi	r24, 0xFE	; 254
  2f4:	85 b9       	out	0x05, r24	; 5
  2f6:	cf 91       	pop	r28
  2f8:	08 95       	ret
