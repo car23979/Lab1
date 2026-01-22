@@ -226,4 +226,10 @@ void manejarCarrera(void) {
 			}
 		}
 	}
+	
+	// Verificar empate
+	if (contadorJugador1 == META && contadorJugador2 == META) {
+		ganador = 3;
+		estadoActual = CARRERA_TERMINADA;
+	}
 }
