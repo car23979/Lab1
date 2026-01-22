@@ -201,7 +201,15 @@ void manejarConteoRegresivo(void) {
 void manejarCarrera(void) {
 	// Botón J1
 	if (boton_j1_presionado()) {
-		if () {
+		if (contadorJugador1 < META) {
+			contadorJugador1++;
+			actualizarLEDsJugador1(contadorJugador1);
+			
+			// Verificar si ganó
+			if (contadorJugador1 == META) {
+				ganador = 1;
+				estadoActual = CARRERA_TERMINADA;
+			}
 		}
 	}
 }
