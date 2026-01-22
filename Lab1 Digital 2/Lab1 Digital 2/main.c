@@ -282,3 +282,13 @@ void manejarFinCarrera(void) {
 	}
 }
 
+// Main
+int main(void) {
+	// Configurar hardware
+	configurarPuertos();
+	display_init();			// Inicializar librería del display
+	botones_init();			// Inicializar librería de botones
+	configurarTimers();		// Configurar timers para interrupciones
+	
+	//
+}
