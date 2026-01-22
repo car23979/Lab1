@@ -27,5 +27,13 @@ void display_init(void) {
 			(1 << SEG_D) | (1 << SEG_E) | (1 << SEG_F);
 	DDRB |= (1 << SEG_G);
 	
-	// 
+	// Apagar display inicialmente
+	display_apagar();
+}
+
+void display_apagar(void) {
+	// Apagar todos los segmentos (High para ánodo común)
+	PORTD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C)	|
+			 (1 << SEG_D) | (1 << SEG_E) | (1 << SEG_F);
+	PORTB |= (1 << SEG_G);
 }
