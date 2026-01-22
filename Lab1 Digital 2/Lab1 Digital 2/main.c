@@ -35,13 +35,14 @@ typedef enum {
 	CARRERA_TERMINADA
 	} EstadoJuego;
 
-EstadoJuego estadoActual = ESPERANDO_INICIO
+EstadoJuego estadoActual = ESPERANDO_INICIO;
 
 // Contadores
-volatile uint8_t contadorRegresivo = 5;
-volatile uint8_t contadorJugador1 = 0;
+
 volatile uint8_t contadorJugador2 = 0;
 volatile uint8_t ganador = 0;	// 0 es ninguno, 1 = J1, 2=J2, 3 es empate
+volatile uint8_t contadorRegresivo = 5;
+volatile uint8_t contadorJugador1 = 0;
 
 // Meta
 #define META 9 // 9 es 1001 en binario
@@ -151,5 +152,9 @@ void manejarEsperaInicio(void) {
 	ganador = 0;
 	
 	// Verificar botón de inicio
-	
+	if (boton_inicio_presionado()) {
+		estadoActual = CONTEO_REGRESIVO;
+		contadorRegresivo = 5;
+		tiempoInicioConteo = 0;
+	}
 }
