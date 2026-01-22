@@ -276,5 +276,9 @@ void manejarFinCarrera(void) {
 		}
 	}
 	
-	
+	// Esperar bóton de inicio para reiniciar
+	if (boton_inicio_presionado()) {
+		estadoActual = ESPERANDO_INICIO;
+	}
 }
+
