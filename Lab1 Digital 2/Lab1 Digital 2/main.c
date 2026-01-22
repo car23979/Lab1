@@ -177,8 +177,8 @@ void manejarConteoRegresivo(void) {
 		if (!cuentaIniciada) {
 			cuentaIniciada = 1;
 			// El 5 ya se mostró al iniciar, ahora esperamos 1s para el 4
-			contadorRegresivo = 4;
-			display_mostrar_numero(4);
+			contadorRegresivo = 5;
+			display_mostrar_numero(5);
 			return;
 		}
 		

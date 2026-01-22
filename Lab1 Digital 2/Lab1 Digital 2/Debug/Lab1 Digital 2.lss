@@ -849,10 +849,10 @@ void manejarConteoRegresivo(void) {
  4b8:	81 e0       	ldi	r24, 0x01	; 1
  4ba:	80 93 62 01 	sts	0x0162, r24	; 0x800162 <cuentaIniciada.1794>
 			// El 5 ya se mostró al iniciar, ahora esperamos 1s para el 4
-			contadorRegresivo = 4;
- 4be:	84 e0       	ldi	r24, 0x04	; 4
+			contadorRegresivo = 5;
+ 4be:	85 e0       	ldi	r24, 0x05	; 5
  4c0:	80 93 10 01 	sts	0x0110, r24	; 0x800110 <contadorRegresivo>
-			display_mostrar_numero(4);
+			display_mostrar_numero(5);
  4c4:	0e 94 dd 00 	call	0x1ba	; 0x1ba <display_mostrar_numero>
 			return;
  4c8:	08 95       	ret
