@@ -104,3 +104,17 @@ void apagarTodosLEDs(void) {
 	PORTC &= ~((1 << J2_LED1) | (1 << J2_LED2) | (1 << J2_LED3));
 }
 
+// Configuración De Timers
+void configurarTimers(void) {
+	// Timer0 para interrupción cada 1ms (base de tiempo)
+	TCCR0A = (1 << WGM01);				// Modo CTC
+	TCCR0B = (1 << CS01) | (1 << CS00);	// Prescaler 64
+	OCR0A = 249;						// 16MHz/64/1000 = 250 -> 250-1 = 249
+	TIMSK0 = (1 << OCIE0A);				// Habilitar interrupción
+	
+	// Timer1 para interrupción cada 1 segundo (conteo regresivo)
+	TCCR1B = (1 << WGM12);					// Modo CTC
+	TCCR1B |= (1 << CS12) | (1 << CS10);	// Prescaler 1024
+	OCR1A = 15624;							// 16MHz/1024 = 15625Hz -> 15625-1 = 15624
+	// Timer1 inicialmente desactivado
+}
