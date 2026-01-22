@@ -298,5 +298,33 @@ int main(void) {
 	apagarTodosLEDs();
 	
 	// Bucle principal
+	while (1) {
+		// Actualizar estado de botones (antirebote)
+		botones_actualizar(obtenerMillis());
+		
+		// Logica del estado del juego
+		switch (estadoActual) {
+			case ESPERANDO_INICIO:
+				manejarEsperaInicio();
+				break;
+				
+			case CONTEO_REGRESIVO:
+				manejarConteoRegresivo();
+				break;
+				
+			case CARRERA_EN_CURSO:
+				manejarCarrera();
+				break;
+			
+			case CARRERA_TERMINADA:
+				manejarFinCarrera();
+				break;
+				
+		}
+		
+		// Pequeña pausa para evitar sobrecargas
+		_delay_ms(10);
+	}
 	
+	return 0;
 }

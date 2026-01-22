@@ -1,0 +1,1197 @@
+
+Lab1 Digital 2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000005e  00800100  000006bc  00000750  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000006bc  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          0000000f  0080015e  0080015e  000007ae  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000007ae  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000007e0  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000f0  00000000  00000000  00000820  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000ecc  00000000  00000000  00000910  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000097a  00000000  00000000  000017dc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000996  00000000  00000000  00002156  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000208  00000000  00000000  00002aec  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000006db  00000000  00000000  00002cf4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000032a  00000000  00000000  000033cf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000c0  00000000  00000000  000036f9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+   c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  14:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  2c:	0c 94 16 02 	jmp	0x42c	; 0x42c <__vector_11>
+  30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  38:	0c 94 f1 01 	jmp	0x3e2	; 0x3e2 <__vector_14>
+  3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+  64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	ec eb       	ldi	r30, 0xBC	; 188
+  7c:	f6 e0       	ldi	r31, 0x06	; 6
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	ae 35       	cpi	r26, 0x5E	; 94
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+  8a:	21 e0       	ldi	r18, 0x01	; 1
+  8c:	ae e5       	ldi	r26, 0x5E	; 94
+  8e:	b1 e0       	ldi	r27, 0x01	; 1
+  90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+  92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+  94:	ad 36       	cpi	r26, 0x6D	; 109
+  96:	b2 07       	cpc	r27, r18
+  98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+  9a:	0e 94 2f 03 	call	0x65e	; 0x65e <main>
+  9e:	0c 94 5c 03 	jmp	0x6b8	; 0x6b8 <_exit>
+
+000000a2 <__bad_interrupt>:
+  a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <botones_init>:
+static Boton btn_j1 = {BTN_J1, 1, 1, 0, 0};
+static Boton btn_j2 = {BTN_J2, 1, 1, 0, 0};
+
+void botones_init(void) {
+	// Configurar botones como entradas con pull-up interno
+	DDRC &= ~((1 << BTN_INICIO) | (1 << BTN_J1) | (1 << BTN_J2));
+  a6:	87 b1       	in	r24, 0x07	; 7
+  a8:	87 7c       	andi	r24, 0xC7	; 199
+  aa:	87 b9       	out	0x07, r24	; 7
+	PORTC |= (1 << BTN_INICIO) | (1 << BTN_J1) | (1 << BTN_J2);
+  ac:	88 b1       	in	r24, 0x08	; 8
+  ae:	88 63       	ori	r24, 0x38	; 56
+  b0:	88 b9       	out	0x08, r24	; 8
+  b2:	08 95       	ret
+
+000000b4 <botones_actualizar>:
+}
+
+void botones_actualizar(uint32_t tiempo_actual) {
+  b4:	cf 92       	push	r12
+  b6:	df 92       	push	r13
+  b8:	ef 92       	push	r14
+  ba:	ff 92       	push	r15
+  bc:	cf 93       	push	r28
+  be:	df 93       	push	r29
+  c0:	00 d0       	rcall	.+0      	; 0xc2 <botones_actualizar+0xe>
+  c2:	00 d0       	rcall	.+0      	; 0xc4 <botones_actualizar+0x10>
+  c4:	00 d0       	rcall	.+0      	; 0xc6 <botones_actualizar+0x12>
+  c6:	cd b7       	in	r28, 0x3d	; 61
+  c8:	de b7       	in	r29, 0x3e	; 62
+  ca:	ab 01       	movw	r20, r22
+  cc:	bc 01       	movw	r22, r24
+	Boton *botones[] = {&btn_inicio, &btn_j1, &btn_j2};
+  ce:	86 e0       	ldi	r24, 0x06	; 6
+  d0:	e1 e1       	ldi	r30, 0x11	; 17
+  d2:	f1 e0       	ldi	r31, 0x01	; 1
+  d4:	de 01       	movw	r26, r28
+  d6:	11 96       	adiw	r26, 0x01	; 1
+  d8:	01 90       	ld	r0, Z+
+  da:	0d 92       	st	X+, r0
+  dc:	8a 95       	dec	r24
+  de:	e1 f7       	brne	.-8      	; 0xd8 <botones_actualizar+0x24>
+	for (uint8_t i = 0; i < 3; i++)	{
+  e0:	20 e0       	ldi	r18, 0x00	; 0
+  e2:	34 c0       	rjmp	.+104    	; 0x14c <botones_actualizar+0x98>
+		Boton *btn = botones[i];
+  e4:	e2 2f       	mov	r30, r18
+  e6:	f0 e0       	ldi	r31, 0x00	; 0
+  e8:	ee 0f       	add	r30, r30
+  ea:	ff 1f       	adc	r31, r31
+  ec:	81 e0       	ldi	r24, 0x01	; 1
+  ee:	90 e0       	ldi	r25, 0x00	; 0
+  f0:	8c 0f       	add	r24, r28
+  f2:	9d 1f       	adc	r25, r29
+  f4:	e8 0f       	add	r30, r24
+  f6:	f9 1f       	adc	r31, r25
+  f8:	01 90       	ld	r0, Z+
+  fa:	f0 81       	ld	r31, Z
+  fc:	e0 2d       	mov	r30, r0
+		
+		// Leer estado actual del botón
+		uint8_t estado_leido = (PINC & (1 << btn->pin)) ? 1 : 0;
+  fe:	86 b1       	in	r24, 0x06	; 6
+ 100:	90 e0       	ldi	r25, 0x00	; 0
+ 102:	00 80       	ld	r0, Z
+ 104:	02 c0       	rjmp	.+4      	; 0x10a <botones_actualizar+0x56>
+ 106:	95 95       	asr	r25
+ 108:	87 95       	ror	r24
+ 10a:	0a 94       	dec	r0
+ 10c:	e2 f7       	brpl	.-8      	; 0x106 <botones_actualizar+0x52>
+ 10e:	91 e0       	ldi	r25, 0x01	; 1
+ 110:	80 ff       	sbrs	r24, 0
+ 112:	90 e0       	ldi	r25, 0x00	; 0
+ 114:	89 2f       	mov	r24, r25
+		
+		// Si el estado cambió, actualizar tiempo del último cambio
+		if (estado_leido != btn->estado_anterior) {
+ 116:	31 81       	ldd	r19, Z+1	; 0x01
+ 118:	93 17       	cp	r25, r19
+ 11a:	11 f0       	breq	.+4      	; 0x120 <botones_actualizar+0x6c>
+			btn->ultimo_cambio = tiempo_actual;
+ 11c:	44 83       	std	Z+4, r20	; 0x04
+			btn->estado_anterior = estado_leido;
+ 11e:	91 83       	std	Z+1, r25	; 0x01
+		}
+		
+		// Si ha pasado más de 50ms desde el último cambio
+		if ((tiempo_actual - btn->ultimo_cambio) > 50) {
+ 120:	94 81       	ldd	r25, Z+4	; 0x04
+ 122:	6a 01       	movw	r12, r20
+ 124:	7b 01       	movw	r14, r22
+ 126:	c9 1a       	sub	r12, r25
+ 128:	d1 08       	sbc	r13, r1
+ 12a:	e1 08       	sbc	r14, r1
+ 12c:	f1 08       	sbc	r15, r1
+ 12e:	93 e3       	ldi	r25, 0x33	; 51
+ 130:	c9 16       	cp	r12, r25
+ 132:	d1 04       	cpc	r13, r1
+ 134:	e1 04       	cpc	r14, r1
+ 136:	f1 04       	cpc	r15, r1
+ 138:	40 f0       	brcs	.+16     	; 0x14a <botones_actualizar+0x96>
+			// Si el estado estable es diferente al estado actual
+			if (estado_leido != btn->estado_actual) {
+ 13a:	92 81       	ldd	r25, Z+2	; 0x02
+ 13c:	89 17       	cp	r24, r25
+ 13e:	29 f0       	breq	.+10     	; 0x14a <botones_actualizar+0x96>
+				btn->estado_actual = estado_leido;
+ 140:	82 83       	std	Z+2, r24	; 0x02
+				
+				// Detectar flanco descendente (presionado)
+				if (btn->estado_actual == 0) {
+ 142:	81 11       	cpse	r24, r1
+ 144:	02 c0       	rjmp	.+4      	; 0x14a <botones_actualizar+0x96>
+					btn->presionado_flag = 1;
+ 146:	81 e0       	ldi	r24, 0x01	; 1
+ 148:	83 83       	std	Z+3, r24	; 0x03
+	PORTC |= (1 << BTN_INICIO) | (1 << BTN_J1) | (1 << BTN_J2);
+}
+
+void botones_actualizar(uint32_t tiempo_actual) {
+	Boton *botones[] = {&btn_inicio, &btn_j1, &btn_j2};
+	for (uint8_t i = 0; i < 3; i++)	{
+ 14a:	2f 5f       	subi	r18, 0xFF	; 255
+ 14c:	23 30       	cpi	r18, 0x03	; 3
+ 14e:	50 f2       	brcs	.-108    	; 0xe4 <botones_actualizar+0x30>
+					btn->presionado_flag = 1;
+				}
+			}
+		}
+	}
+}
+ 150:	26 96       	adiw	r28, 0x06	; 6
+ 152:	0f b6       	in	r0, 0x3f	; 63
+ 154:	f8 94       	cli
+ 156:	de bf       	out	0x3e, r29	; 62
+ 158:	0f be       	out	0x3f, r0	; 63
+ 15a:	cd bf       	out	0x3d, r28	; 61
+ 15c:	df 91       	pop	r29
+ 15e:	cf 91       	pop	r28
+ 160:	ff 90       	pop	r15
+ 162:	ef 90       	pop	r14
+ 164:	df 90       	pop	r13
+ 166:	cf 90       	pop	r12
+ 168:	08 95       	ret
+
+0000016a <boton_inicio_presionado>:
+
+uint8_t boton_inicio_presionado(void) {
+	if (btn_inicio.presionado_flag) {
+ 16a:	80 91 0d 01 	lds	r24, 0x010D	; 0x80010d <btn_inicio+0x3>
+ 16e:	88 23       	and	r24, r24
+ 170:	19 f0       	breq	.+6      	; 0x178 <boton_inicio_presionado+0xe>
+		btn_inicio.presionado_flag = 0;
+ 172:	10 92 0d 01 	sts	0x010D, r1	; 0x80010d <btn_inicio+0x3>
+		return 1;
+ 176:	81 e0       	ldi	r24, 0x01	; 1
+	}
+	return 0;
+}
+ 178:	08 95       	ret
+
+0000017a <boton_j1_presionado>:
+
+uint8_t boton_j1_presionado(void) {
+	if (btn_j1.presionado_flag) {
+ 17a:	80 91 08 01 	lds	r24, 0x0108	; 0x800108 <btn_j1+0x3>
+ 17e:	88 23       	and	r24, r24
+ 180:	19 f0       	breq	.+6      	; 0x188 <boton_j1_presionado+0xe>
+		btn_j1.presionado_flag = 0;
+ 182:	10 92 08 01 	sts	0x0108, r1	; 0x800108 <btn_j1+0x3>
+		return 1;
+ 186:	81 e0       	ldi	r24, 0x01	; 1
+	}
+	return 0;
+}
+ 188:	08 95       	ret
+
+0000018a <boton_j2_presionado>:
+
+uint8_t boton_j2_presionado(void) {
+	if (btn_j2.presionado_flag) {
+ 18a:	80 91 03 01 	lds	r24, 0x0103	; 0x800103 <__DATA_REGION_ORIGIN__+0x3>
+ 18e:	88 23       	and	r24, r24
+ 190:	19 f0       	breq	.+6      	; 0x198 <boton_j2_presionado+0xe>
+		btn_j2.presionado_flag = 0;
+ 192:	10 92 03 01 	sts	0x0103, r1	; 0x800103 <__DATA_REGION_ORIGIN__+0x3>
+		return 1;
+ 196:	81 e0       	ldi	r24, 0x01	; 1
+	}
+	return 0;
+ 198:	08 95       	ret
+
+0000019a <display_apagar>:
+	display_apagar();
+}
+
+void display_apagar(void) {
+	// Apagar todos los segmentos (High para ánodo común)
+	PORTD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C)	|
+ 19a:	8b b1       	in	r24, 0x0b	; 11
+ 19c:	8c 67       	ori	r24, 0x7C	; 124
+ 19e:	8b b9       	out	0x0b, r24	; 11
+			 (1 << SEG_D) | (1 << SEG_E) | (1 << SEG_F);
+	PORTB |= (1 << SEG_G);
+ 1a0:	85 b1       	in	r24, 0x05	; 5
+ 1a2:	81 60       	ori	r24, 0x01	; 1
+ 1a4:	85 b9       	out	0x05, r24	; 5
+ 1a6:	08 95       	ret
+
+000001a8 <display_init>:
+	{1,1,1,1,0,1,1},	// 9
+};
+
+void display_init(void) {
+	// Configurar pines de segmentos como salidas
+	DDRD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C) |
+ 1a8:	8a b1       	in	r24, 0x0a	; 10
+ 1aa:	8c 67       	ori	r24, 0x7C	; 124
+ 1ac:	8a b9       	out	0x0a, r24	; 10
+			(1 << SEG_D) | (1 << SEG_E) | (1 << SEG_F);
+	DDRB |= (1 << SEG_G);
+ 1ae:	84 b1       	in	r24, 0x04	; 4
+ 1b0:	81 60       	ori	r24, 0x01	; 1
+ 1b2:	84 b9       	out	0x04, r24	; 4
+	
+	// Apagar display inicialmente
+	display_apagar();
+ 1b4:	0e 94 cd 00 	call	0x19a	; 0x19a <display_apagar>
+ 1b8:	08 95       	ret
+
+000001ba <display_mostrar_numero>:
+	PORTD |= (1 << SEG_A) | (1 << SEG_B) | (1 << SEG_C)	|
+			 (1 << SEG_D) | (1 << SEG_E) | (1 << SEG_F);
+	PORTB |= (1 << SEG_G);
+}
+
+void display_mostrar_numero(uint8_t numero) {
+ 1ba:	cf 93       	push	r28
+ 1bc:	c8 2f       	mov	r28, r24
+	// Validar entrada
+	if (numero > 9) {
+ 1be:	8a 30       	cpi	r24, 0x0A	; 10
+ 1c0:	18 f0       	brcs	.+6      	; 0x1c8 <display_mostrar_numero+0xe>
+		display_apagar();
+ 1c2:	0e 94 cd 00 	call	0x19a	; 0x19a <display_apagar>
+		return;
+ 1c6:	97 c0       	rjmp	.+302    	; 0x2f6 <display_mostrar_numero+0x13c>
+	}
+	
+	// Apagar display primero
+	display_apagar();
+ 1c8:	0e 94 cd 00 	call	0x19a	; 0x19a <display_apagar>
+	
+	// Segmento A
+	if (digitos[numero][0] == 0) PORTD &= ~(1 << SEG_A); 
+ 1cc:	8c 2f       	mov	r24, r28
+ 1ce:	90 e0       	ldi	r25, 0x00	; 0
+ 1d0:	fc 01       	movw	r30, r24
+ 1d2:	ee 0f       	add	r30, r30
+ 1d4:	ff 1f       	adc	r31, r31
+ 1d6:	ee 0f       	add	r30, r30
+ 1d8:	ff 1f       	adc	r31, r31
+ 1da:	ee 0f       	add	r30, r30
+ 1dc:	ff 1f       	adc	r31, r31
+ 1de:	e8 1b       	sub	r30, r24
+ 1e0:	f9 0b       	sbc	r31, r25
+ 1e2:	e9 5e       	subi	r30, 0xE9	; 233
+ 1e4:	fe 4f       	sbci	r31, 0xFE	; 254
+ 1e6:	20 81       	ld	r18, Z
+ 1e8:	21 11       	cpse	r18, r1
+ 1ea:	04 c0       	rjmp	.+8      	; 0x1f4 <display_mostrar_numero+0x3a>
+ 1ec:	2b b1       	in	r18, 0x0b	; 11
+ 1ee:	2f 7b       	andi	r18, 0xBF	; 191
+ 1f0:	2b b9       	out	0x0b, r18	; 11
+ 1f2:	03 c0       	rjmp	.+6      	; 0x1fa <display_mostrar_numero+0x40>
+		else PORTD |= (1 << SEG_A);
+ 1f4:	2b b1       	in	r18, 0x0b	; 11
+ 1f6:	20 64       	ori	r18, 0x40	; 64
+ 1f8:	2b b9       	out	0x0b, r18	; 11
+	// Segmento B
+	if (digitos[numero][1] == 0) PORTD &= ~(1 << SEG_B);
+ 1fa:	fc 01       	movw	r30, r24
+ 1fc:	ee 0f       	add	r30, r30
+ 1fe:	ff 1f       	adc	r31, r31
+ 200:	ee 0f       	add	r30, r30
+ 202:	ff 1f       	adc	r31, r31
+ 204:	ee 0f       	add	r30, r30
+ 206:	ff 1f       	adc	r31, r31
+ 208:	e8 1b       	sub	r30, r24
+ 20a:	f9 0b       	sbc	r31, r25
+ 20c:	e9 5e       	subi	r30, 0xE9	; 233
+ 20e:	fe 4f       	sbci	r31, 0xFE	; 254
+ 210:	21 81       	ldd	r18, Z+1	; 0x01
+ 212:	21 11       	cpse	r18, r1
+ 214:	04 c0       	rjmp	.+8      	; 0x21e <display_mostrar_numero+0x64>
+ 216:	2b b1       	in	r18, 0x0b	; 11
+ 218:	2f 7d       	andi	r18, 0xDF	; 223
+ 21a:	2b b9       	out	0x0b, r18	; 11
+ 21c:	03 c0       	rjmp	.+6      	; 0x224 <display_mostrar_numero+0x6a>
+		else PORTD |= (1 << SEG_B);
+ 21e:	2b b1       	in	r18, 0x0b	; 11
+ 220:	20 62       	ori	r18, 0x20	; 32
+ 222:	2b b9       	out	0x0b, r18	; 11
+	// Segmento C
+	if (digitos[numero][2] == 0) PORTD &= ~(1 << SEG_C);
+ 224:	fc 01       	movw	r30, r24
+ 226:	ee 0f       	add	r30, r30
+ 228:	ff 1f       	adc	r31, r31
+ 22a:	ee 0f       	add	r30, r30
+ 22c:	ff 1f       	adc	r31, r31
+ 22e:	ee 0f       	add	r30, r30
+ 230:	ff 1f       	adc	r31, r31
+ 232:	e8 1b       	sub	r30, r24
+ 234:	f9 0b       	sbc	r31, r25
+ 236:	e9 5e       	subi	r30, 0xE9	; 233
+ 238:	fe 4f       	sbci	r31, 0xFE	; 254
+ 23a:	22 81       	ldd	r18, Z+2	; 0x02
+ 23c:	21 11       	cpse	r18, r1
+ 23e:	04 c0       	rjmp	.+8      	; 0x248 <display_mostrar_numero+0x8e>
+ 240:	2b b1       	in	r18, 0x0b	; 11
+ 242:	2b 7f       	andi	r18, 0xFB	; 251
+ 244:	2b b9       	out	0x0b, r18	; 11
+ 246:	03 c0       	rjmp	.+6      	; 0x24e <display_mostrar_numero+0x94>
+		else PORTD |= (1 << SEG_C);
+ 248:	2b b1       	in	r18, 0x0b	; 11
+ 24a:	24 60       	ori	r18, 0x04	; 4
+ 24c:	2b b9       	out	0x0b, r18	; 11
+	// Segmento D
+	if (digitos[numero][3] == 0) PORTD &= ~(1 << SEG_D);
+ 24e:	fc 01       	movw	r30, r24
+ 250:	ee 0f       	add	r30, r30
+ 252:	ff 1f       	adc	r31, r31
+ 254:	ee 0f       	add	r30, r30
+ 256:	ff 1f       	adc	r31, r31
+ 258:	ee 0f       	add	r30, r30
+ 25a:	ff 1f       	adc	r31, r31
+ 25c:	e8 1b       	sub	r30, r24
+ 25e:	f9 0b       	sbc	r31, r25
+ 260:	e9 5e       	subi	r30, 0xE9	; 233
+ 262:	fe 4f       	sbci	r31, 0xFE	; 254
+ 264:	23 81       	ldd	r18, Z+3	; 0x03
+ 266:	21 11       	cpse	r18, r1
+ 268:	04 c0       	rjmp	.+8      	; 0x272 <display_mostrar_numero+0xb8>
+ 26a:	2b b1       	in	r18, 0x0b	; 11
+ 26c:	27 7f       	andi	r18, 0xF7	; 247
+ 26e:	2b b9       	out	0x0b, r18	; 11
+ 270:	03 c0       	rjmp	.+6      	; 0x278 <display_mostrar_numero+0xbe>
+		else PORTD |= (1 << SEG_D);
+ 272:	2b b1       	in	r18, 0x0b	; 11
+ 274:	28 60       	ori	r18, 0x08	; 8
+ 276:	2b b9       	out	0x0b, r18	; 11
+	// Segmento E
+	if (digitos[numero][4] == 0) PORTD &= ~(1 << SEG_E);
+ 278:	fc 01       	movw	r30, r24
+ 27a:	ee 0f       	add	r30, r30
+ 27c:	ff 1f       	adc	r31, r31
+ 27e:	ee 0f       	add	r30, r30
+ 280:	ff 1f       	adc	r31, r31
+ 282:	ee 0f       	add	r30, r30
+ 284:	ff 1f       	adc	r31, r31
+ 286:	e8 1b       	sub	r30, r24
+ 288:	f9 0b       	sbc	r31, r25
+ 28a:	e9 5e       	subi	r30, 0xE9	; 233
+ 28c:	fe 4f       	sbci	r31, 0xFE	; 254
+ 28e:	24 81       	ldd	r18, Z+4	; 0x04
+ 290:	21 11       	cpse	r18, r1
+ 292:	04 c0       	rjmp	.+8      	; 0x29c <display_mostrar_numero+0xe2>
+ 294:	2b b1       	in	r18, 0x0b	; 11
+ 296:	2f 7e       	andi	r18, 0xEF	; 239
+ 298:	2b b9       	out	0x0b, r18	; 11
+ 29a:	03 c0       	rjmp	.+6      	; 0x2a2 <display_mostrar_numero+0xe8>
+		else PORTD |= (1 << SEG_E);
+ 29c:	2b b1       	in	r18, 0x0b	; 11
+ 29e:	20 61       	ori	r18, 0x10	; 16
+ 2a0:	2b b9       	out	0x0b, r18	; 11
+	// Segmento F
+	if (digitos[numero][5] == 0) PORTD &= ~(1 << SEG_F);
+ 2a2:	fc 01       	movw	r30, r24
+ 2a4:	ee 0f       	add	r30, r30
+ 2a6:	ff 1f       	adc	r31, r31
+ 2a8:	ee 0f       	add	r30, r30
+ 2aa:	ff 1f       	adc	r31, r31
+ 2ac:	ee 0f       	add	r30, r30
+ 2ae:	ff 1f       	adc	r31, r31
+ 2b0:	e8 1b       	sub	r30, r24
+ 2b2:	f9 0b       	sbc	r31, r25
+ 2b4:	e9 5e       	subi	r30, 0xE9	; 233
+ 2b6:	fe 4f       	sbci	r31, 0xFE	; 254
+ 2b8:	25 81       	ldd	r18, Z+5	; 0x05
+ 2ba:	21 11       	cpse	r18, r1
+ 2bc:	04 c0       	rjmp	.+8      	; 0x2c6 <display_mostrar_numero+0x10c>
+ 2be:	2b b1       	in	r18, 0x0b	; 11
+ 2c0:	2f 7d       	andi	r18, 0xDF	; 223
+ 2c2:	2b b9       	out	0x0b, r18	; 11
+ 2c4:	03 c0       	rjmp	.+6      	; 0x2cc <display_mostrar_numero+0x112>
+		else PORTD |= (1 << SEG_F);
+ 2c6:	2b b1       	in	r18, 0x0b	; 11
+ 2c8:	20 62       	ori	r18, 0x20	; 32
+ 2ca:	2b b9       	out	0x0b, r18	; 11
+	// Segmento G
+	if (digitos[numero][5] == 0) PORTB &= ~(1 << SEG_F);
+ 2cc:	fc 01       	movw	r30, r24
+ 2ce:	ee 0f       	add	r30, r30
+ 2d0:	ff 1f       	adc	r31, r31
+ 2d2:	ee 0f       	add	r30, r30
+ 2d4:	ff 1f       	adc	r31, r31
+ 2d6:	ee 0f       	add	r30, r30
+ 2d8:	ff 1f       	adc	r31, r31
+ 2da:	e8 1b       	sub	r30, r24
+ 2dc:	f9 0b       	sbc	r31, r25
+ 2de:	e9 5e       	subi	r30, 0xE9	; 233
+ 2e0:	fe 4f       	sbci	r31, 0xFE	; 254
+ 2e2:	85 81       	ldd	r24, Z+5	; 0x05
+ 2e4:	81 11       	cpse	r24, r1
+ 2e6:	04 c0       	rjmp	.+8      	; 0x2f0 <display_mostrar_numero+0x136>
+ 2e8:	85 b1       	in	r24, 0x05	; 5
+ 2ea:	8f 7d       	andi	r24, 0xDF	; 223
+ 2ec:	85 b9       	out	0x05, r24	; 5
+ 2ee:	03 c0       	rjmp	.+6      	; 0x2f6 <display_mostrar_numero+0x13c>
+		else PORTB |= (1 << SEG_G);
+ 2f0:	85 b1       	in	r24, 0x05	; 5
+ 2f2:	81 60       	ori	r24, 0x01	; 1
+ 2f4:	85 b9       	out	0x05, r24	; 5
+ 2f6:	cf 91       	pop	r28
+ 2f8:	08 95       	ret
+
+000002fa <configurarPuertos>:
+// Funciones de Configuración
+void configurarPuertos(void) {
+	// Los segmentos del display se configuran en display7seg_init()
+	
+	// Configuración de LEDs J1 como salidas
+	DDRB |= (1 << J1_LED0) | (1 << J1_LED1) |
+ 2fa:	84 b1       	in	r24, 0x04	; 4
+ 2fc:	8e 61       	ori	r24, 0x1E	; 30
+ 2fe:	84 b9       	out	0x04, r24	; 4
+			(1 << J1_LED2) | (1 << J1_LED3);
+	
+	// Configuración de LEDs J2 como salidas
+	DDRB |= (1 << J2_LED0);
+ 300:	84 b1       	in	r24, 0x04	; 4
+ 302:	80 62       	ori	r24, 0x20	; 32
+ 304:	84 b9       	out	0x04, r24	; 4
+	DDRC |= (1 << J1_LED1) | (1 << J1_LED2) | (1 << J1_LED3);
+ 306:	87 b1       	in	r24, 0x07	; 7
+ 308:	8c 61       	ori	r24, 0x1C	; 28
+ 30a:	87 b9       	out	0x07, r24	; 7
+ 30c:	08 95       	ret
+
+0000030e <actualizarLEDsJugador1>:
+
+// Funciones LEDs
+// LEDs J1
+void actualizarLEDsJugador1(uint8_t valor) {
+	// Mostrar valor binario en LEDs J1
+	if (valor & 0x01) PORTB |= (1 << J1_LED0);
+ 30e:	80 ff       	sbrs	r24, 0
+ 310:	04 c0       	rjmp	.+8      	; 0x31a <actualizarLEDsJugador1+0xc>
+ 312:	95 b1       	in	r25, 0x05	; 5
+ 314:	92 60       	ori	r25, 0x02	; 2
+ 316:	95 b9       	out	0x05, r25	; 5
+ 318:	03 c0       	rjmp	.+6      	; 0x320 <actualizarLEDsJugador1+0x12>
+		else PORTB &= ~(1 << J1_LED0);
+ 31a:	95 b1       	in	r25, 0x05	; 5
+ 31c:	9d 7f       	andi	r25, 0xFD	; 253
+ 31e:	95 b9       	out	0x05, r25	; 5
+	if (valor & 0x02) PORTB |= (1 << J1_LED1);
+ 320:	81 ff       	sbrs	r24, 1
+ 322:	04 c0       	rjmp	.+8      	; 0x32c <actualizarLEDsJugador1+0x1e>
+ 324:	95 b1       	in	r25, 0x05	; 5
+ 326:	94 60       	ori	r25, 0x04	; 4
+ 328:	95 b9       	out	0x05, r25	; 5
+ 32a:	03 c0       	rjmp	.+6      	; 0x332 <actualizarLEDsJugador1+0x24>
+		else PORTB &= ~(1 << J1_LED1);
+ 32c:	95 b1       	in	r25, 0x05	; 5
+ 32e:	9b 7f       	andi	r25, 0xFB	; 251
+ 330:	95 b9       	out	0x05, r25	; 5
+	if (valor & 0x04) PORTB |= (1 << J1_LED2);
+ 332:	82 ff       	sbrs	r24, 2
+ 334:	04 c0       	rjmp	.+8      	; 0x33e <actualizarLEDsJugador1+0x30>
+ 336:	95 b1       	in	r25, 0x05	; 5
+ 338:	98 60       	ori	r25, 0x08	; 8
+ 33a:	95 b9       	out	0x05, r25	; 5
+ 33c:	03 c0       	rjmp	.+6      	; 0x344 <actualizarLEDsJugador1+0x36>
+		else PORTB &= ~(1 << J1_LED2);
+ 33e:	95 b1       	in	r25, 0x05	; 5
+ 340:	97 7f       	andi	r25, 0xF7	; 247
+ 342:	95 b9       	out	0x05, r25	; 5
+	if (valor & 0x08) PORTB |= (1 << J1_LED3);
+ 344:	83 ff       	sbrs	r24, 3
+ 346:	04 c0       	rjmp	.+8      	; 0x350 <actualizarLEDsJugador1+0x42>
+ 348:	85 b1       	in	r24, 0x05	; 5
+ 34a:	80 61       	ori	r24, 0x10	; 16
+ 34c:	85 b9       	out	0x05, r24	; 5
+ 34e:	08 95       	ret
+		else PORTB &= ~(1 << J1_LED3);
+ 350:	85 b1       	in	r24, 0x05	; 5
+ 352:	8f 7e       	andi	r24, 0xEF	; 239
+ 354:	85 b9       	out	0x05, r24	; 5
+ 356:	08 95       	ret
+
+00000358 <actualizarLEDsJugador2>:
+}
+
+// LEDs J2
+void actualizarLEDsJugador2(uint8_t valor) {
+	// Mostrar valor binario en LEDs J2
+	if (valor & 0x01) PORTB |= (1 << J1_LED0);
+ 358:	80 ff       	sbrs	r24, 0
+ 35a:	04 c0       	rjmp	.+8      	; 0x364 <actualizarLEDsJugador2+0xc>
+ 35c:	95 b1       	in	r25, 0x05	; 5
+ 35e:	92 60       	ori	r25, 0x02	; 2
+ 360:	95 b9       	out	0x05, r25	; 5
+ 362:	03 c0       	rjmp	.+6      	; 0x36a <actualizarLEDsJugador2+0x12>
+	else PORTB &= ~(1 << J2_LED0);
+ 364:	95 b1       	in	r25, 0x05	; 5
+ 366:	9f 7d       	andi	r25, 0xDF	; 223
+ 368:	95 b9       	out	0x05, r25	; 5
+	if (valor & 0x02) PORTC |= (1 << J2_LED1);
+ 36a:	81 ff       	sbrs	r24, 1
+ 36c:	04 c0       	rjmp	.+8      	; 0x376 <actualizarLEDsJugador2+0x1e>
+ 36e:	98 b1       	in	r25, 0x08	; 8
+ 370:	91 60       	ori	r25, 0x01	; 1
+ 372:	98 b9       	out	0x08, r25	; 8
+ 374:	03 c0       	rjmp	.+6      	; 0x37c <actualizarLEDsJugador2+0x24>
+	else PORTC &= ~(1 << J2_LED1);
+ 376:	98 b1       	in	r25, 0x08	; 8
+ 378:	9e 7f       	andi	r25, 0xFE	; 254
+ 37a:	98 b9       	out	0x08, r25	; 8
+	if (valor & 0x04) PORTC |= (1 << J2_LED2);
+ 37c:	82 ff       	sbrs	r24, 2
+ 37e:	04 c0       	rjmp	.+8      	; 0x388 <actualizarLEDsJugador2+0x30>
+ 380:	98 b1       	in	r25, 0x08	; 8
+ 382:	92 60       	ori	r25, 0x02	; 2
+ 384:	98 b9       	out	0x08, r25	; 8
+ 386:	03 c0       	rjmp	.+6      	; 0x38e <actualizarLEDsJugador2+0x36>
+	else PORTC &= ~(1 << J2_LED2);
+ 388:	98 b1       	in	r25, 0x08	; 8
+ 38a:	9d 7f       	andi	r25, 0xFD	; 253
+ 38c:	98 b9       	out	0x08, r25	; 8
+	if (valor & 0x08) PORTC |= (1 << J2_LED3);
+ 38e:	83 ff       	sbrs	r24, 3
+ 390:	04 c0       	rjmp	.+8      	; 0x39a <actualizarLEDsJugador2+0x42>
+ 392:	88 b1       	in	r24, 0x08	; 8
+ 394:	84 60       	ori	r24, 0x04	; 4
+ 396:	88 b9       	out	0x08, r24	; 8
+ 398:	08 95       	ret
+	else PORTC &= ~(1 << J2_LED3);
+ 39a:	88 b1       	in	r24, 0x08	; 8
+ 39c:	8b 7f       	andi	r24, 0xFB	; 251
+ 39e:	88 b9       	out	0x08, r24	; 8
+ 3a0:	08 95       	ret
+
+000003a2 <apagarTodosLEDs>:
+}
+
+void apagarTodosLEDs(void) {
+	// Apagar LEDs J1
+	PORTB &= ~((1 << J1_LED0) | (1 << J1_LED1) | (1 << J1_LED2) | (1 << J1_LED3));
+ 3a2:	85 b1       	in	r24, 0x05	; 5
+ 3a4:	81 7e       	andi	r24, 0xE1	; 225
+ 3a6:	85 b9       	out	0x05, r24	; 5
+	// Apagar LEDs J2
+	PORTB &= ~(1 << J2_LED0);
+ 3a8:	85 b1       	in	r24, 0x05	; 5
+ 3aa:	8f 7d       	andi	r24, 0xDF	; 223
+ 3ac:	85 b9       	out	0x05, r24	; 5
+	PORTC &= ~((1 << J2_LED1) | (1 << J2_LED2) | (1 << J2_LED3));
+ 3ae:	88 b1       	in	r24, 0x08	; 8
+ 3b0:	88 7f       	andi	r24, 0xF8	; 248
+ 3b2:	88 b9       	out	0x08, r24	; 8
+ 3b4:	08 95       	ret
+
+000003b6 <configurarTimers>:
+}
+
+// Configuración De Timers
+void configurarTimers(void) {
+	// Timer0 para interrupción cada 1ms (base de tiempo)
+	TCCR0A = (1 << WGM01);				// Modo CTC
+ 3b6:	82 e0       	ldi	r24, 0x02	; 2
+ 3b8:	84 bd       	out	0x24, r24	; 36
+	TCCR0B = (1 << CS01) | (1 << CS00);	// Prescaler 64
+ 3ba:	93 e0       	ldi	r25, 0x03	; 3
+ 3bc:	95 bd       	out	0x25, r25	; 37
+	OCR0A = 249;						// 16MHz/64/1000 = 250 -> 250-1 = 249
+ 3be:	99 ef       	ldi	r25, 0xF9	; 249
+ 3c0:	97 bd       	out	0x27, r25	; 39
+	TIMSK0 = (1 << OCIE0A);				// Habilitar interrupción
+ 3c2:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7f806e>
+	
+	// Timer1 para interrupción cada 1 segundo (conteo regresivo)
+	TCCR1B = (1 << WGM12);					// Modo CTC
+ 3c6:	e1 e8       	ldi	r30, 0x81	; 129
+ 3c8:	f0 e0       	ldi	r31, 0x00	; 0
+ 3ca:	88 e0       	ldi	r24, 0x08	; 8
+ 3cc:	80 83       	st	Z, r24
+	TCCR1B |= (1 << CS12) | (1 << CS10);	// Prescaler 1024
+ 3ce:	80 81       	ld	r24, Z
+ 3d0:	85 60       	ori	r24, 0x05	; 5
+ 3d2:	80 83       	st	Z, r24
+	OCR1A = 15624;							// 16MHz/1024 = 15625Hz -> 15625-1 = 15624
+ 3d4:	88 e0       	ldi	r24, 0x08	; 8
+ 3d6:	9d e3       	ldi	r25, 0x3D	; 61
+ 3d8:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
+ 3dc:	80 93 88 00 	sts	0x0088, r24	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
+ 3e0:	08 95       	ret
+
+000003e2 <__vector_14>:
+	// Timer1 inicialmente desactivado
+}
+
+// Interrupciones
+// Timer0: Interrupción cada 1ms
+ISR(TIMER0_COMPA_vect) {
+ 3e2:	1f 92       	push	r1
+ 3e4:	0f 92       	push	r0
+ 3e6:	0f b6       	in	r0, 0x3f	; 63
+ 3e8:	0f 92       	push	r0
+ 3ea:	11 24       	eor	r1, r1
+ 3ec:	8f 93       	push	r24
+ 3ee:	9f 93       	push	r25
+ 3f0:	af 93       	push	r26
+ 3f2:	bf 93       	push	r27
+	milisegundos++;
+ 3f4:	80 91 63 01 	lds	r24, 0x0163	; 0x800163 <milisegundos>
+ 3f8:	90 91 64 01 	lds	r25, 0x0164	; 0x800164 <milisegundos+0x1>
+ 3fc:	a0 91 65 01 	lds	r26, 0x0165	; 0x800165 <milisegundos+0x2>
+ 400:	b0 91 66 01 	lds	r27, 0x0166	; 0x800166 <milisegundos+0x3>
+ 404:	01 96       	adiw	r24, 0x01	; 1
+ 406:	a1 1d       	adc	r26, r1
+ 408:	b1 1d       	adc	r27, r1
+ 40a:	80 93 63 01 	sts	0x0163, r24	; 0x800163 <milisegundos>
+ 40e:	90 93 64 01 	sts	0x0164, r25	; 0x800164 <milisegundos+0x1>
+ 412:	a0 93 65 01 	sts	0x0165, r26	; 0x800165 <milisegundos+0x2>
+ 416:	b0 93 66 01 	sts	0x0166, r27	; 0x800166 <milisegundos+0x3>
+}
+ 41a:	bf 91       	pop	r27
+ 41c:	af 91       	pop	r26
+ 41e:	9f 91       	pop	r25
+ 420:	8f 91       	pop	r24
+ 422:	0f 90       	pop	r0
+ 424:	0f be       	out	0x3f, r0	; 63
+ 426:	0f 90       	pop	r0
+ 428:	1f 90       	pop	r1
+ 42a:	18 95       	reti
+
+0000042c <__vector_11>:
+
+// Timer1: Interrupción cada 1s
+ISR(TIMER1_COMPA_vect) {
+ 42c:	1f 92       	push	r1
+ 42e:	0f 92       	push	r0
+ 430:	0f b6       	in	r0, 0x3f	; 63
+ 432:	0f 92       	push	r0
+ 434:	11 24       	eor	r1, r1
+ 436:	8f 93       	push	r24
+	segundoCompleto = 1;
+ 438:	81 e0       	ldi	r24, 0x01	; 1
+ 43a:	80 93 62 01 	sts	0x0162, r24	; 0x800162 <segundoCompleto>
+}
+ 43e:	8f 91       	pop	r24
+ 440:	0f 90       	pop	r0
+ 442:	0f be       	out	0x3f, r0	; 63
+ 444:	0f 90       	pop	r0
+ 446:	1f 90       	pop	r1
+ 448:	18 95       	reti
+
+0000044a <obtenerMillis>:
+
+// Función para tiempo
+uint32_t obtenerMillis(void) {
+	uint32_t m;
+	cli();
+ 44a:	f8 94       	cli
+	m = milisegundos;
+ 44c:	60 91 63 01 	lds	r22, 0x0163	; 0x800163 <milisegundos>
+ 450:	70 91 64 01 	lds	r23, 0x0164	; 0x800164 <milisegundos+0x1>
+ 454:	80 91 65 01 	lds	r24, 0x0165	; 0x800165 <milisegundos+0x2>
+ 458:	90 91 66 01 	lds	r25, 0x0166	; 0x800166 <milisegundos+0x3>
+	sei();
+ 45c:	78 94       	sei
+	return m;
+}
+ 45e:	08 95       	ret
+
+00000460 <manejarEsperaInicio>:
+
+// Maquina de estados
+void manejarEsperaInicio(void) {
+	// Mostrar 0 en display
+	display_mostrar_numero(0);
+ 460:	80 e0       	ldi	r24, 0x00	; 0
+ 462:	0e 94 dd 00 	call	0x1ba	; 0x1ba <display_mostrar_numero>
+	
+	// Apagar todos los LEDs y resetear contadores
+	apagarTodosLEDs();
+ 466:	0e 94 d1 01 	call	0x3a2	; 0x3a2 <apagarTodosLEDs>
+	contadorJugador1 = 0;
+ 46a:	10 92 69 01 	sts	0x0169, r1	; 0x800169 <contadorJugador1>
+	contadorJugador2 = 0;
+ 46e:	10 92 6b 01 	sts	0x016B, r1	; 0x80016b <contadorJugador2>
+	ganador = 0;
+ 472:	10 92 6a 01 	sts	0x016A, r1	; 0x80016a <ganador>
+	
+	// Verificar botón de inicio
+	if (boton_inicio_presionado()) {
+ 476:	0e 94 b5 00 	call	0x16a	; 0x16a <boton_inicio_presionado>
+ 47a:	88 23       	and	r24, r24
+ 47c:	b1 f0       	breq	.+44     	; 0x4aa <manejarEsperaInicio+0x4a>
+		estadoActual = CONTEO_REGRESIVO;
+ 47e:	81 e0       	ldi	r24, 0x01	; 1
+ 480:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <estadoActual>
+		contadorRegresivo = 5;
+ 484:	95 e0       	ldi	r25, 0x05	; 5
+ 486:	90 93 10 01 	sts	0x0110, r25	; 0x800110 <contadorRegresivo>
+		tiempoInicioConteo = 0;
+ 48a:	10 92 67 01 	sts	0x0167, r1	; 0x800167 <tiempoInicioConteo>
+		inicioConteoFlag = 1;	// Indicar que el conteo acaba de empezar
+ 48e:	80 93 68 01 	sts	0x0168, r24	; 0x800168 <inicioConteoFlag>
+		
+		// Configurar Timer1 para 1 segundo
+		TCNT1 = 0;					// Reiniciar contador
+ 492:	10 92 85 00 	sts	0x0085, r1	; 0x800085 <__TEXT_REGION_LENGTH__+0x7f8085>
+ 496:	10 92 84 00 	sts	0x0084, r1	; 0x800084 <__TEXT_REGION_LENGTH__+0x7f8084>
+		TIMSK1 |= (1 << OCIE1A);	// Habilitar interrupción
+ 49a:	ef e6       	ldi	r30, 0x6F	; 111
+ 49c:	f0 e0       	ldi	r31, 0x00	; 0
+ 49e:	80 81       	ld	r24, Z
+ 4a0:	82 60       	ori	r24, 0x02	; 2
+ 4a2:	80 83       	st	Z, r24
+		
+		// Mostrar primer número 5
+		display_mostrar_numero(5);
+ 4a4:	85 e0       	ldi	r24, 0x05	; 5
+ 4a6:	0e 94 dd 00 	call	0x1ba	; 0x1ba <display_mostrar_numero>
+ 4aa:	08 95       	ret
+
+000004ac <manejarConteoRegresivo>:
+	}
+}
+
+void manejarConteoRegresivo(void) {
+	static uint32_t ultimoCambio = 0;
+	uint32_t tiempoActual = obtenerMillis();
+ 4ac:	0e 94 25 02 	call	0x44a	; 0x44a <obtenerMillis>
+	
+	// Verificar si ha pasado 1 segundo desde el último cambio
+	if (segundoCompleto) {
+ 4b0:	80 91 62 01 	lds	r24, 0x0162	; 0x800162 <segundoCompleto>
+ 4b4:	88 23       	and	r24, r24
+ 4b6:	31 f1       	breq	.+76     	; 0x504 <manejarConteoRegresivo+0x58>
+		segundoCompleto = 0; obtenerMillis();
+ 4b8:	10 92 62 01 	sts	0x0162, r1	; 0x800162 <segundoCompleto>
+ 4bc:	0e 94 25 02 	call	0x44a	; 0x44a <obtenerMillis>
+		
+		// Si es el inicio, asegurar que mostramos 5 por al menos 1 segundo
+		if (inicioConteoFlag) {
+ 4c0:	80 91 68 01 	lds	r24, 0x0168	; 0x800168 <inicioConteoFlag>
+ 4c4:	88 23       	and	r24, r24
+ 4c6:	19 f0       	breq	.+6      	; 0x4ce <manejarConteoRegresivo+0x22>
+			inicioConteoFlag = 0;
+ 4c8:	10 92 68 01 	sts	0x0168, r1	; 0x800168 <inicioConteoFlag>
+			ultimoCambio = tiempoActual;
+			return; // Mantener 5 por un segundo completo
+ 4cc:	08 95       	ret
+		}
+		
+		// Decrementar contador
+		if (contadorRegresivo > 0) {
+ 4ce:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <contadorRegresivo>
+ 4d2:	88 23       	and	r24, r24
+ 4d4:	b9 f0       	breq	.+46     	; 0x504 <manejarConteoRegresivo+0x58>
+			contadorRegresivo--;
+ 4d6:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <contadorRegresivo>
+ 4da:	81 50       	subi	r24, 0x01	; 1
+ 4dc:	80 93 10 01 	sts	0x0110, r24	; 0x800110 <contadorRegresivo>
+			display_mostrar_numero(contadorRegresivo);
+ 4e0:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <contadorRegresivo>
+ 4e4:	0e 94 dd 00 	call	0x1ba	; 0x1ba <display_mostrar_numero>
+			
+			if (contadorRegresivo == 0) {
+ 4e8:	80 91 10 01 	lds	r24, 0x0110	; 0x800110 <contadorRegresivo>
+ 4ec:	81 11       	cpse	r24, r1
+ 4ee:	0a c0       	rjmp	.+20     	; 0x504 <manejarConteoRegresivo+0x58>
+				// Fin del conteo, comenzar carrera
+				estadoActual = CARRERA_EN_CURSO;
+ 4f0:	82 e0       	ldi	r24, 0x02	; 2
+ 4f2:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <estadoActual>
+				display_apagar();	// Apagar display durante carrera
+ 4f6:	0e 94 cd 00 	call	0x19a	; 0x19a <display_apagar>
+				// Desactivar Timer1 ya que no lo necesitamos más
+				TIMSK1 &= ~(1 << OCIE1A);
+ 4fa:	ef e6       	ldi	r30, 0x6F	; 111
+ 4fc:	f0 e0       	ldi	r31, 0x00	; 0
+ 4fe:	80 81       	ld	r24, Z
+ 500:	8d 7f       	andi	r24, 0xFD	; 253
+ 502:	80 83       	st	Z, r24
+ 504:	08 95       	ret
+
+00000506 <manejarCarrera>:
+	}
+}
+
+void manejarCarrera(void) {
+	// Botón J1
+	if (boton_j1_presionado()) {
+ 506:	0e 94 bd 00 	call	0x17a	; 0x17a <boton_j1_presionado>
+ 50a:	88 23       	and	r24, r24
+ 50c:	b9 f0       	breq	.+46     	; 0x53c <manejarCarrera+0x36>
+		if (contadorJugador1 < META) {
+ 50e:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <contadorJugador1>
+ 512:	89 30       	cpi	r24, 0x09	; 9
+ 514:	98 f4       	brcc	.+38     	; 0x53c <manejarCarrera+0x36>
+			contadorJugador1++;
+ 516:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <contadorJugador1>
+ 51a:	8f 5f       	subi	r24, 0xFF	; 255
+ 51c:	80 93 69 01 	sts	0x0169, r24	; 0x800169 <contadorJugador1>
+			actualizarLEDsJugador1(contadorJugador1);
+ 520:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <contadorJugador1>
+ 524:	0e 94 87 01 	call	0x30e	; 0x30e <actualizarLEDsJugador1>
+			
+			// Verificar si ganó
+			if (contadorJugador1 == META) {
+ 528:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <contadorJugador1>
+ 52c:	89 30       	cpi	r24, 0x09	; 9
+ 52e:	31 f4       	brne	.+12     	; 0x53c <manejarCarrera+0x36>
+				ganador = 1;
+ 530:	81 e0       	ldi	r24, 0x01	; 1
+ 532:	80 93 6a 01 	sts	0x016A, r24	; 0x80016a <ganador>
+				estadoActual = CARRERA_TERMINADA;
+ 536:	83 e0       	ldi	r24, 0x03	; 3
+ 538:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <estadoActual>
+			}
+		}
+	}
+	
+	// Botón J2
+	if (boton_j2_presionado()) {
+ 53c:	0e 94 c5 00 	call	0x18a	; 0x18a <boton_j2_presionado>
+ 540:	88 23       	and	r24, r24
+ 542:	b9 f0       	breq	.+46     	; 0x572 <manejarCarrera+0x6c>
+		if (contadorJugador2) {
+ 544:	80 91 6b 01 	lds	r24, 0x016B	; 0x80016b <contadorJugador2>
+ 548:	88 23       	and	r24, r24
+ 54a:	99 f0       	breq	.+38     	; 0x572 <manejarCarrera+0x6c>
+			contadorJugador2++;
+ 54c:	80 91 6b 01 	lds	r24, 0x016B	; 0x80016b <contadorJugador2>
+ 550:	8f 5f       	subi	r24, 0xFF	; 255
+ 552:	80 93 6b 01 	sts	0x016B, r24	; 0x80016b <contadorJugador2>
+			actualizarLEDsJugador2(contadorJugador2);
+ 556:	80 91 6b 01 	lds	r24, 0x016B	; 0x80016b <contadorJugador2>
+ 55a:	0e 94 ac 01 	call	0x358	; 0x358 <actualizarLEDsJugador2>
+			
+			// Verificar si ganó
+			if (contadorJugador2 == META) {
+ 55e:	80 91 6b 01 	lds	r24, 0x016B	; 0x80016b <contadorJugador2>
+ 562:	89 30       	cpi	r24, 0x09	; 9
+ 564:	31 f4       	brne	.+12     	; 0x572 <manejarCarrera+0x6c>
+				ganador = 2;
+ 566:	82 e0       	ldi	r24, 0x02	; 2
+ 568:	80 93 6a 01 	sts	0x016A, r24	; 0x80016a <ganador>
+				estadoActual = CARRERA_TERMINADA;
+ 56c:	83 e0       	ldi	r24, 0x03	; 3
+ 56e:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <estadoActual>
+			}
+		}
+	}
+	
+	// Verificar empate
+	if (contadorJugador1 == META && contadorJugador2 == META) {
+ 572:	80 91 69 01 	lds	r24, 0x0169	; 0x800169 <contadorJugador1>
+ 576:	89 30       	cpi	r24, 0x09	; 9
+ 578:	49 f4       	brne	.+18     	; 0x58c <manejarCarrera+0x86>
+ 57a:	80 91 6b 01 	lds	r24, 0x016B	; 0x80016b <contadorJugador2>
+ 57e:	89 30       	cpi	r24, 0x09	; 9
+ 580:	29 f4       	brne	.+10     	; 0x58c <manejarCarrera+0x86>
+		ganador = 3;
+ 582:	83 e0       	ldi	r24, 0x03	; 3
+ 584:	80 93 6a 01 	sts	0x016A, r24	; 0x80016a <ganador>
+		estadoActual = CARRERA_TERMINADA;
+ 588:	80 93 6c 01 	sts	0x016C, r24	; 0x80016c <estadoActual>
+ 58c:	08 95       	ret
+
+0000058e <manejarFinCarrera>:
+	}
+}
+
+void manejarFinCarrera(void) {
+ 58e:	cf 92       	push	r12
+ 590:	df 92       	push	r13
+ 592:	ef 92       	push	r14
+ 594:	ff 92       	push	r15
+ 596:	0f 93       	push	r16
+ 598:	1f 93       	push	r17
+	static uint8_t mostrarGanador = 1;
+	static uint32_t ultimoParpadeo = 0;
+	
+	// Mostrar número del ganador en display
+	if (ganador == 1) {
+ 59a:	80 91 6a 01 	lds	r24, 0x016A	; 0x80016a <ganador>
+ 59e:	81 30       	cpi	r24, 0x01	; 1
+ 5a0:	49 f4       	brne	.+18     	; 0x5b4 <manejarFinCarrera+0x26>
+		display_mostrar_numero(1);
+ 5a2:	0e 94 dd 00 	call	0x1ba	; 0x1ba <display_mostrar_numero>
+		
+		// Encender todos los LEDs del jugador 1
+		actualizarLEDsJugador1(0x0F);	// Todos los bits en 1
+ 5a6:	8f e0       	ldi	r24, 0x0F	; 15
+ 5a8:	0e 94 87 01 	call	0x30e	; 0x30e <actualizarLEDsJugador1>
+		
+		// Apagar LEDs del jugador 2
+		actualizarLEDsJugador2(0x00);	
+ 5ac:	80 e0       	ldi	r24, 0x00	; 0
+ 5ae:	0e 94 ac 01 	call	0x358	; 0x358 <actualizarLEDsJugador2>
+ 5b2:	49 c0       	rjmp	.+146    	; 0x646 <manejarFinCarrera+0xb8>
+	} else if (ganador == 2) {
+ 5b4:	80 91 6a 01 	lds	r24, 0x016A	; 0x80016a <ganador>
+ 5b8:	82 30       	cpi	r24, 0x02	; 2
+ 5ba:	49 f4       	brne	.+18     	; 0x5ce <manejarFinCarrera+0x40>
+		display_mostrar_numero(2);
+ 5bc:	0e 94 dd 00 	call	0x1ba	; 0x1ba <display_mostrar_numero>
+		
+		// Encender todos los LEDs del jugador 2
+		actualizarLEDsJugador2(0x0F);	// Todos los bits en 1
+ 5c0:	8f e0       	ldi	r24, 0x0F	; 15
+ 5c2:	0e 94 ac 01 	call	0x358	; 0x358 <actualizarLEDsJugador2>
+		
+		// Apagar LEDs del Jugador 1
+		actualizarLEDsJugador1(0x00);
+ 5c6:	80 e0       	ldi	r24, 0x00	; 0
+ 5c8:	0e 94 87 01 	call	0x30e	; 0x30e <actualizarLEDsJugador1>
+ 5cc:	3c c0       	rjmp	.+120    	; 0x646 <manejarFinCarrera+0xb8>
+	}else if (ganador == 3) {
+ 5ce:	80 91 6a 01 	lds	r24, 0x016A	; 0x80016a <ganador>
+ 5d2:	83 30       	cpi	r24, 0x03	; 3
+ 5d4:	c1 f5       	brne	.+112    	; 0x646 <manejarFinCarrera+0xb8>
+		
+		// Empate se va a mostrar 0 y parpater ambos jugadores
+		uint32_t tiempoActual = obtenerMillis();
+ 5d6:	0e 94 25 02 	call	0x44a	; 0x44a <obtenerMillis>
+		
+		if (tiempoActual - ultimoParpadeo > 500) {	//Parpadeo cada 500ms
+ 5da:	00 91 5e 01 	lds	r16, 0x015E	; 0x80015e <__data_end>
+ 5de:	10 91 5f 01 	lds	r17, 0x015F	; 0x80015f <__data_end+0x1>
+ 5e2:	20 91 60 01 	lds	r18, 0x0160	; 0x800160 <__data_end+0x2>
+ 5e6:	30 91 61 01 	lds	r19, 0x0161	; 0x800161 <__data_end+0x3>
+ 5ea:	6b 01       	movw	r12, r22
+ 5ec:	7c 01       	movw	r14, r24
+ 5ee:	c0 1a       	sub	r12, r16
+ 5f0:	d1 0a       	sbc	r13, r17
+ 5f2:	e2 0a       	sbc	r14, r18
+ 5f4:	f3 0a       	sbc	r15, r19
+ 5f6:	45 ef       	ldi	r20, 0xF5	; 245
+ 5f8:	c4 16       	cp	r12, r20
+ 5fa:	41 e0       	ldi	r20, 0x01	; 1
+ 5fc:	d4 06       	cpc	r13, r20
+ 5fe:	e1 04       	cpc	r14, r1
+ 600:	f1 04       	cpc	r15, r1
+ 602:	78 f0       	brcs	.+30     	; 0x622 <manejarFinCarrera+0x94>
+			ultimoParpadeo = tiempoActual;
+ 604:	60 93 5e 01 	sts	0x015E, r22	; 0x80015e <__data_end>
+ 608:	70 93 5f 01 	sts	0x015F, r23	; 0x80015f <__data_end+0x1>
+ 60c:	80 93 60 01 	sts	0x0160, r24	; 0x800160 <__data_end+0x2>
+ 610:	90 93 61 01 	sts	0x0161, r25	; 0x800161 <__data_end+0x3>
+			mostrarGanador = !mostrarGanador;
+ 614:	81 e0       	ldi	r24, 0x01	; 1
+ 616:	90 91 0f 01 	lds	r25, 0x010F	; 0x80010f <mostrarGanador.1802>
+ 61a:	91 11       	cpse	r25, r1
+ 61c:	80 e0       	ldi	r24, 0x00	; 0
+ 61e:	80 93 0f 01 	sts	0x010F, r24	; 0x80010f <mostrarGanador.1802>
+		}
+		
+		if (mostrarGanador) {
+ 622:	80 91 0f 01 	lds	r24, 0x010F	; 0x80010f <mostrarGanador.1802>
+ 626:	88 23       	and	r24, r24
+ 628:	51 f0       	breq	.+20     	; 0x63e <manejarFinCarrera+0xb0>
+			display_mostrar_numero(0);
+ 62a:	80 e0       	ldi	r24, 0x00	; 0
+ 62c:	0e 94 dd 00 	call	0x1ba	; 0x1ba <display_mostrar_numero>
+			// Encender todos los LEDs de ambos jugadores
+			actualizarLEDsJugador1(0x0F);
+ 630:	8f e0       	ldi	r24, 0x0F	; 15
+ 632:	0e 94 87 01 	call	0x30e	; 0x30e <actualizarLEDsJugador1>
+			actualizarLEDsJugador2(0x0F);
+ 636:	8f e0       	ldi	r24, 0x0F	; 15
+ 638:	0e 94 ac 01 	call	0x358	; 0x358 <actualizarLEDsJugador2>
+ 63c:	04 c0       	rjmp	.+8      	; 0x646 <manejarFinCarrera+0xb8>
+		} else {
+			display_apagar();
+ 63e:	0e 94 cd 00 	call	0x19a	; 0x19a <display_apagar>
+			apagarTodosLEDs();
+ 642:	0e 94 d1 01 	call	0x3a2	; 0x3a2 <apagarTodosLEDs>
+		}
+	}
+	
+	// Esperar bóton de inicio para reiniciar
+	if (boton_inicio_presionado()) {
+ 646:	0e 94 b5 00 	call	0x16a	; 0x16a <boton_inicio_presionado>
+ 64a:	81 11       	cpse	r24, r1
+		estadoActual = ESPERANDO_INICIO;
+ 64c:	10 92 6c 01 	sts	0x016C, r1	; 0x80016c <estadoActual>
+	}
+}
+ 650:	1f 91       	pop	r17
+ 652:	0f 91       	pop	r16
+ 654:	ff 90       	pop	r15
+ 656:	ef 90       	pop	r14
+ 658:	df 90       	pop	r13
+ 65a:	cf 90       	pop	r12
+ 65c:	08 95       	ret
+
+0000065e <main>:
+
+// Main
+int main(void) {
+	// Configurar hardware
+	configurarPuertos();
+ 65e:	0e 94 7d 01 	call	0x2fa	; 0x2fa <configurarPuertos>
+	display_init();			// Inicializar librería del display
+ 662:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <display_init>
+	botones_init();			// Inicializar librería de botones
+ 666:	0e 94 53 00 	call	0xa6	; 0xa6 <botones_init>
+	configurarTimers();		// Configurar timers para interrupciones
+ 66a:	0e 94 db 01 	call	0x3b6	; 0x3b6 <configurarTimers>
+	
+	// Habilitar interrupciones globales
+	sei();
+ 66e:	78 94       	sei
+	
+	// Estado inicial
+	display_apagar();
+ 670:	0e 94 cd 00 	call	0x19a	; 0x19a <display_apagar>
+	apagarTodosLEDs();
+ 674:	0e 94 d1 01 	call	0x3a2	; 0x3a2 <apagarTodosLEDs>
+	
+	// Bucle principal
+	while (1) {
+		// Actualizar estado de botones (antirebote)
+		botones_actualizar(obtenerMillis());
+ 678:	0e 94 25 02 	call	0x44a	; 0x44a <obtenerMillis>
+ 67c:	0e 94 5a 00 	call	0xb4	; 0xb4 <botones_actualizar>
+		
+		// Logica del estado del juego
+		switch (estadoActual) {
+ 680:	80 91 6c 01 	lds	r24, 0x016C	; 0x80016c <estadoActual>
+ 684:	81 30       	cpi	r24, 0x01	; 1
+ 686:	49 f0       	breq	.+18     	; 0x69a <main+0x3c>
+ 688:	28 f0       	brcs	.+10     	; 0x694 <main+0x36>
+ 68a:	82 30       	cpi	r24, 0x02	; 2
+ 68c:	49 f0       	breq	.+18     	; 0x6a0 <main+0x42>
+ 68e:	83 30       	cpi	r24, 0x03	; 3
+ 690:	51 f0       	breq	.+20     	; 0x6a6 <main+0x48>
+ 692:	0b c0       	rjmp	.+22     	; 0x6aa <main+0x4c>
+			case ESPERANDO_INICIO:
+				manejarEsperaInicio();
+ 694:	0e 94 30 02 	call	0x460	; 0x460 <manejarEsperaInicio>
+				break;
+ 698:	08 c0       	rjmp	.+16     	; 0x6aa <main+0x4c>
+				
+			case CONTEO_REGRESIVO:
+				manejarConteoRegresivo();
+ 69a:	0e 94 56 02 	call	0x4ac	; 0x4ac <manejarConteoRegresivo>
+				break;
+ 69e:	05 c0       	rjmp	.+10     	; 0x6aa <main+0x4c>
+				
+			case CARRERA_EN_CURSO:
+				manejarCarrera();
+ 6a0:	0e 94 83 02 	call	0x506	; 0x506 <manejarCarrera>
+				break;
+ 6a4:	02 c0       	rjmp	.+4      	; 0x6aa <main+0x4c>
+			
+			case CARRERA_TERMINADA:
+				manejarFinCarrera();
+ 6a6:	0e 94 c7 02 	call	0x58e	; 0x58e <manejarFinCarrera>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 6aa:	8f e3       	ldi	r24, 0x3F	; 63
+ 6ac:	9c e9       	ldi	r25, 0x9C	; 156
+ 6ae:	01 97       	sbiw	r24, 0x01	; 1
+ 6b0:	f1 f7       	brne	.-4      	; 0x6ae <main+0x50>
+ 6b2:	00 c0       	rjmp	.+0      	; 0x6b4 <main+0x56>
+ 6b4:	00 00       	nop
+ 6b6:	e0 cf       	rjmp	.-64     	; 0x678 <main+0x1a>
+
+000006b8 <_exit>:
+ 6b8:	f8 94       	cli
+
+000006ba <__stop_program>:
+ 6ba:	ff cf       	rjmp	.-2      	; 0x6ba <__stop_program>
